@@ -9,11 +9,11 @@ public class MergeSort {
 
     public static void main(String[] args) {
         // simple example
-    	int a[] = {12, 123, 1, 28, 183, 16};
-    	System.out.println("before : " + Arrays.toString(a));
-    	mergeSort(a);
-    	System.out.println("after  : " + Arrays.toString(a));
-    	
+      int a[] = {12, 123, 1, 28, 183, 16};
+      System.out.println("before : " + Arrays.toString(a));
+      mergeSort(a);
+      System.out.println("after  : " + Arrays.toString(a));
+
         // TODO: test merge sort algorithm
     }
 

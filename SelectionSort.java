@@ -8,12 +8,12 @@ public class SelectionSort {
 
     public static void main(String[] args) {
         // simple example
-    	int a[] = {12, 123, 1, 28, 183, 16};
-    	System.out.println("before : " + Arrays.toString(a));
-    	selectionSort(a);
-    	System.out.println("after  : " + Arrays.toString(a));
-    	
-    	// TODO: test selection sort algorithm
+      int a[] = {12, 123, 1, 28, 183, 16};
+      System.out.println("before : " + Arrays.toString(a));
+      selectionSort(a);
+      System.out.println("after  : " + Arrays.toString(a));
+
+      // TODO: test selection sort algorithm
     }
 
     // selection sort algorithm
