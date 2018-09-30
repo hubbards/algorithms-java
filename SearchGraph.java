@@ -16,8 +16,7 @@ import java.util.Stack;
 // TODO: document graph algorithms
 // TODO: add method which returns true if graph is connected, false otherwise
 // TODO: add method which returns true if graph is bipartite, false otherwise
-// TODO: print some sort of visualization (possibly in driver program for a
-// special graph)
+// TODO: print some sort of visualization (possibly in driver program for a special graph)
 public class SearchGraph {
   /**
    * Color used by BFS and DFS.

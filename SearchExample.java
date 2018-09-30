@@ -6,7 +6,6 @@
  */
 public class SearchExample {
   public static void main(String[] args) {
-    // simple example
     SearchGraph g = new SearchGraph();
     g.addVertex("a");
     g.addVertex("b");

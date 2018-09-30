@@ -11,8 +11,7 @@ import java.util.PriorityQueue;
  * @author Spencer Hubbard
  */
 // TODO: add method which returns true if graph is connected, false otherwise
-// TODO: print some sort of visualization (possibly in driver program for a
-// special graph)
+// TODO: print some sort of visualization (possibly in driver program for a special graph)
 public class DijkstraGraph {
   public static final float INFINITY = Float.MAX_VALUE;
 

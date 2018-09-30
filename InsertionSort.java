@@ -19,12 +19,7 @@ public class InsertionSort {
     // TODO: examples
   }
 
-  /**
-   * TODO: comment
-   *
-   * @param a
-   *            TODO: comment
-   */
+  // TODO: comment
   public static void insertionSort(int[] a) {
     // TODO: implement
     throw new RuntimeException("method not implemented");

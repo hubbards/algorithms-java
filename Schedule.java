@@ -9,8 +9,8 @@
 public class Schedule {
   public static void main(String[] args) {
     // example of (unweighted) interval scheduling problem
-    float[] start = { 1, 3, 0, 4, 3, 5, 6, 8 };
-    float[] finish = { 4, 5, 6, 7, 8, 9, 10, 11 };
+    float[] start = {1, 3, 0, 4, 3, 5, 6, 8};
+    float[] finish = {4, 5, 6, 7, 8, 9, 10, 11};
     boolean[] solutionI = intervalScheduleI(start, finish);
     boolean[] solutionR = intervalScheduleR(start, finish);
 
@@ -73,10 +73,6 @@ public class Schedule {
   /**
    * Recursive greedy algorithm for (unweighted) interval scheduling problem.
    *
-   * TODO: document running time
-   *
-   * TODO: rewrite for requests not necessarily sorted by earliest finish time
-   *
    * @param start
    * start times for requests, i.e., <code>start[i]</code> is the start time
    * of the <code>i</code>th request.
@@ -89,6 +85,8 @@ public class Schedule {
    * @return
    * largest compatible subset of given requests.
    */
+  // TODO: document running time
+  // TODO: rewrite for requests not necessarily sorted by earliest finish time
   public static boolean[] intervalScheduleR(float[] start, float[] finish) {
     // TODO: check that requests are sorted by finish time
     int n = start.length;

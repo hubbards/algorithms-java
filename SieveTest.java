@@ -1,7 +1,7 @@
 import java.util.List;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 /**
@@ -15,11 +15,6 @@ public class SieveTest {
 
     // One hundredth prime
     private static int bigPrime = 541;
-
-    @BeforeClass
-    public static void setupForTests() {
-        // TODO: fill out
-    }
 
     // Helper method for testing small primes.
     private static void testSmallPrimes(List<Integer> numbers) {
@@ -124,7 +119,7 @@ public class SieveTest {
         assertEquals(6, numbers.size());
         testSmallPrimes(numbers);
     }
-    
+
     @Test
     public void testBigPrime() {
         List<Integer> numbers = Sieve.sieve(bigPrime);
