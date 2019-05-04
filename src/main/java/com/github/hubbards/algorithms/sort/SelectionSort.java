@@ -1,19 +1,15 @@
-// This program contains an implementation of the selection sort algorithm.
+package com.github.hubbards.algorithms.sort;
 
-// TODO: document running time
-
-import java.util.*; // for Arrays
-
-public class SelectionSort {
-
-    public static void main(String[] args) {
-        // simple example
-      int a[] = {12, 123, 1, 28, 183, 16};
-      System.out.println("before : " + Arrays.toString(a));
-      selectionSort(a);
-      System.out.println("after  : " + Arrays.toString(a));
-
-      // TODO: test selection sort algorithm
+/**
+ * This class contains an implementation of the selection sort algorithm.
+ * <p>
+ * TODO: document running time
+ *
+ * @author Spencer Hubbard
+ */
+public final class SelectionSort {
+    private SelectionSort() {
+        throw new AssertionError("static class");
     }
 
     // selection sort algorithm

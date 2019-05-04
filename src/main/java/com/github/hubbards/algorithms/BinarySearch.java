@@ -1,13 +1,14 @@
-// This program contains an implementation of the binary search algorithm.
+package com.github.hubbards.algorithms;
 
-// NOTE: worst-case running time of binary search algorithm is O (log n)
-
-import java.util.*; // for Random
-
-public class BinarySearch {
-
-    public static void main(String[] args) {
-        // TODO: test binary search algorithm
+/**
+ * This class contains implementations of the binary search algorithm. The
+ * worst-case running time of binary search algorithm is O (log n).
+ *
+ * @author Spencer Hubbard
+ */
+public final class BinarySearch {
+    private BinarySearch() {
+        throw new AssertionError("static class");
     }
 
     // iterative binary search algorithm

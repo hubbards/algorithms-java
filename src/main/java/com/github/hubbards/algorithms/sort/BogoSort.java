@@ -1,12 +1,16 @@
-// This program contains an implementation of the bogo sort algorithm. Don't
-// run this program...
+package com.github.hubbards.algorithms.sort;
 
-import java.util.*; // for Random
+import java.util.Random;
 
-public class BogoSort {
-
-    public static void main(String[] args) {
-        // TODO: test bogo sort algorithm
+/**
+ * This class contains an implementation of the bogo sort algorithm. Don't
+ * run this program...
+ *
+ * @author Spencer Hubbard
+ */
+public final class BogoSort {
+    public BogoSort() {
+        throw new AssertionError("static class");
     }
 
     // bogo sort algorithm
