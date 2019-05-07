@@ -1,12 +1,6 @@
 package com.github.hubbards.algorithms.graph;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -97,7 +91,7 @@ public class TopologicalSortGraph implements Graph {
      * Prints an adjacency list representation of this graph to standard output.
      */
     public void printAdjacencyList() {
-        System.out.print("vertex: adjacency list:\n");
+        System.out.println("vertex: adjacency list:");
         for (Vertex u : map.values()) {
             // print vertex v
             System.out.printf("%-3.3s     ", u.name);
@@ -182,17 +176,17 @@ public class TopologicalSortGraph implements Graph {
      */
     private static class Vertex {
         // Name of this vertex.
-        public final String name;
+        final String name;
         // Adjacency list for this vertex.
-        public List<Vertex> adj;
+        List<Vertex> adj;
         // In-degree for this vertex.
-        public int deg;
+        int deg;
 
         // Bookkeeping field for topological sort algorithm.
-        public int temp;
+        int temp;
 
         // Construct vertex with given name.
-        public Vertex(String name) {
+        Vertex(String name) {
             this.name = name;
             adj = new LinkedList<Vertex>();
             deg = 0;
@@ -200,7 +194,7 @@ public class TopologicalSortGraph implements Graph {
         }
 
         // Set bookkeeping field to default value.
-        public void reset() {
+        void reset() {
             temp = deg;
         }
     }
