@@ -237,22 +237,22 @@ public class PrimGraph extends WeightedGraph {
     // Vertex represents a vertex of a graph.
     private static class Vertex {
         // Name of this vertex.
-        public final String name;
+        final String name;
         // Incidence list for this vertex.
-        public List<Edge> inc;
+        List<Edge> inc;
 
         // Bookkeeping field for color of this vertex.
-        public Color color;
+        Color color;
 
         // Construct vertex with given name.
-        public Vertex(String name) {
+        Vertex(String name) {
             this.name = name;
             inc = new LinkedList<Edge>();
             reset();
         }
 
         // Set bookkeeping field to default value for this vertex.
-        public void reset() {
+        void reset() {
             color = Color.WHITE;
         }
     }
@@ -260,17 +260,17 @@ public class PrimGraph extends WeightedGraph {
     // Edge represents a weighted edge of a graph.
     private static class Edge implements Comparable<Edge> {
         // Tail of this edge.
-        public final Vertex tail;
+        final Vertex tail;
         // Head of this edge.
-        public final Vertex head;
+        final Vertex head;
         // Cost of this edge.
-        public final float cost;
+        final float cost;
 
         // Bookkeeping field for color of edge.
-        public Color color;
+        Color color;
 
         // Construct edge with given head and cost.
-        public Edge(Vertex tail, Vertex head, float cost) {
+        Edge(Vertex tail, Vertex head, float cost) {
             this.tail = tail;
             this.head = head;
             this.cost = cost;
@@ -278,7 +278,7 @@ public class PrimGraph extends WeightedGraph {
         }
 
         // Set bookkeeping field to default value for this edge.
-        public void reset() {
+        void reset() {
             color = Color.WHITE;
         }
 

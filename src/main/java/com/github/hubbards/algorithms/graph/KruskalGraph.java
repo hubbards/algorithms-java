@@ -259,12 +259,12 @@ public class KruskalGraph extends WeightedGraph {
     // Vertex represents a vertex of a graph.
     private static class Vertex {
         // Name of this vertex.
-        public final String name;
+        final String name;
         // Index of this vertex.
-        public final int index;
+        final int index;
 
         // Construct vertex with given name.
-        public Vertex(String name, int index) {
+        Vertex(String name, int index) {
             this.name = name;
             this.index = index;
         }
@@ -273,17 +273,17 @@ public class KruskalGraph extends WeightedGraph {
     // Edge represents a weighted edge of a graph.
     private static class Edge implements Comparable<Edge> {
         // Tail of this edge.
-        public final Vertex tail;
+        final Vertex tail;
         // Head of this edge.
-        public final Vertex head;
+        final Vertex head;
         // Cost of this edge.
-        public final float cost;
+        final float cost;
 
         // Bookkeeping field for color of edge.
-        public Color color;
+        Color color;
 
         // Construct edge with given head and cost.
-        public Edge(Vertex tail, Vertex head, float cost) {
+        Edge(Vertex tail, Vertex head, float cost) {
             this.tail = tail;
             this.head = head;
             this.cost = cost;
@@ -291,7 +291,7 @@ public class KruskalGraph extends WeightedGraph {
         }
 
         // Set bookkeeping field to default value for this edge.
-        public void reset() {
+        void reset() {
             color = Color.WHITE;
         }
 

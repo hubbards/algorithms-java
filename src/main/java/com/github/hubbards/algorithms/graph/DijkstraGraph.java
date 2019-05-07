@@ -223,27 +223,27 @@ public class DijkstraGraph extends WeightedGraph {
     // Vertex represents a vertex of a graph.
     private static class Vertex {
         // Name of this vertex.
-        public final String name;
+        final String name;
         // Adjacency list for this vertex.
-        public List<Edge> adj;
+        List<Edge> adj;
         // TODO: add field for position in pairing heap of path to this vertex for dijkstra2
 
         // Bookkeeping field for total cost of path to this vertex.
-        public float cost;
+        float cost;
         // Bookkeeping field for last vertex in path to this vertex.
-        public Vertex last;
+        Vertex last;
         // Bookkeeping field for color of this vertex.
-        public Color color;
+        Color color;
 
         // Construct vertex with given name.
-        public Vertex(String name) {
+        Vertex(String name) {
             this.name = name;
             adj = new LinkedList<Edge>();
             reset();
         }
 
         // Set bookkeeping fields to default values for this vertex.
-        public void reset() {
+        void reset() {
             cost = INFINITY;
             last = null;
             color = Color.WHITE;
@@ -253,12 +253,12 @@ public class DijkstraGraph extends WeightedGraph {
     // Edge represents a weighted and directed edge of a graph.
     private static class Edge {
         // Head of this edge.
-        public final Vertex head;
+        final Vertex head;
         // Cost of this edge.
-        public final float cost;
+        final float cost;
 
         // Construct edge with given head and cost.
-        public Edge(Vertex head, float cost) {
+        Edge(Vertex head, float cost) {
             this.head = head;
             this.cost = cost;
         }
@@ -270,12 +270,12 @@ public class DijkstraGraph extends WeightedGraph {
      */
     private static class Path implements Comparable<Path> {
         // Last vertex in this path.
-        public Vertex last;
+        Vertex last;
         // Cost of this path.
-        public float cost;
+        float cost;
 
         // Construct path with given last vertex and cost.
-        public Path(Vertex last, float cost) {
+        Path(Vertex last, float cost) {
             this.last = last;
             this.cost = cost;
         }
