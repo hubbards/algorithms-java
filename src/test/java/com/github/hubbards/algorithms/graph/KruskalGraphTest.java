@@ -1,5 +1,8 @@
 package com.github.hubbards.algorithms.graph;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 public class KruskalGraphTest extends WeightedGraphTest<KruskalGraph> {
     @Override
     protected KruskalGraph createGraph() {
@@ -7,8 +10,6 @@ public class KruskalGraphTest extends WeightedGraphTest<KruskalGraph> {
     }
 
     /*
-     * TODO: write unit test
-     *
      * Minimum spanning tree
      *
      * debug output
@@ -28,4 +29,9 @@ public class KruskalGraphTest extends WeightedGraphTest<KruskalGraph> {
      * total cost: 16.00
      *
      */
+
+    @Test
+    public void testKruskal() {
+        Assert.assertEquals(16.0, graph.kruskal(), DELTA);
+    }
 }

@@ -15,7 +15,7 @@ import java.util.PriorityQueue;
  * @author Spencer Hubbard
  */
 public class DijkstraGraph extends WeightedGraph {
-    public static final float INFINITY = Float.MAX_VALUE;
+    public static final double INFINITY = Double.MAX_VALUE;
 
     // Map name of vertex to vertex object.
     private Map<String, Vertex> map;
@@ -63,7 +63,7 @@ public class DijkstraGraph extends WeightedGraph {
 
     // pre : end-points exist, edge is simple, and cost is positive
     @Override
-    public void addWeightedEdge(String tail, String head, float cost) {
+    public void addWeightedEdge(String tail, String head, double cost) {
         // check preconditions
         if (!containsVertex(tail) || !containsVertex(head)) {
             throw new GraphException("end-point(s) not found");
@@ -124,11 +124,10 @@ public class DijkstraGraph extends WeightedGraph {
      * <p>
      * TODO: document running time
      * <p>
-     * TODO: add source vertex to state
+     * TODO: return testable result
      *
-     * @param name the name of the given source vertex.
-     * @throws GraphException if this graph does not contain the given source
-     *                        vertex.
+     * @param name the name of the source vertex.
+     * @throws GraphException if this graph does not have the source vertex.
      */
     public void dijkstra1(String name) {
         // check preconditions
@@ -153,7 +152,7 @@ public class DijkstraGraph extends WeightedGraph {
                     if (v.color != Color.BLACK) {
                         // explore v
                         v.color = Color.GRAY;
-                        float cost = u.cost + e.cost;
+                        double cost = u.cost + e.cost;
                         if (v.cost > cost) {
                             v.cost = cost;
                             v.last = u;
@@ -171,7 +170,7 @@ public class DijkstraGraph extends WeightedGraph {
     /**
      * Computes minimum cost path in this graph from a given source vertex to
      * all other vertexes in the connected component of this graph containing
-     * the given source vertex.
+     * the source vertex.
      * <p>
      * NOTE: Uses (pairing heap) priority queue with decrease key operation to
      * organize search.
@@ -179,19 +178,14 @@ public class DijkstraGraph extends WeightedGraph {
      * NOTE: Algorithm is similar to BFS.
      * <p>
      * TODO: document running time
-     * <p>
-     * TODO: add source vertex to state
      *
-     * @param name the name of the given source vertex.
-     * @throws GraphException if this graph does not contain the given source
-     *                        vertex.
+     * @param name the name of the source vertex.
+     * @throws GraphException if this graph does not have the source vertex.
      */
     public void dijkstra2(String name) {
         // TODO: implement
         throw new RuntimeException("method not implemented");
     }
-
-    // TODO: add getters for shortest paths, costs, and source
 
     /*
      * Debugging method that prints bookkeeping fields and path for each vertex
@@ -213,7 +207,6 @@ public class DijkstraGraph extends WeightedGraph {
     }
 
     // Reset bookkeeping fields to default values for each vertex in graph.
-    // TODO: make public
     private void reset() {
         for (Vertex v : map.values()) {
             v.reset();
@@ -229,7 +222,7 @@ public class DijkstraGraph extends WeightedGraph {
         // TODO: add field for position in pairing heap of path to this vertex for dijkstra2
 
         // Bookkeeping field for total cost of path to this vertex.
-        float cost;
+        double cost;
         // Bookkeeping field for last vertex in path to this vertex.
         Vertex last;
         // Bookkeeping field for color of this vertex.
@@ -255,10 +248,10 @@ public class DijkstraGraph extends WeightedGraph {
         // Head of this edge.
         final Vertex head;
         // Cost of this edge.
-        final float cost;
+        final double cost;
 
         // Construct edge with given head and cost.
-        Edge(Vertex head, float cost) {
+        Edge(Vertex head, double cost) {
             this.head = head;
             this.cost = cost;
         }
@@ -272,10 +265,10 @@ public class DijkstraGraph extends WeightedGraph {
         // Last vertex in this path.
         Vertex last;
         // Cost of this path.
-        float cost;
+        double cost;
 
         // Construct path with given last vertex and cost.
-        Path(Vertex last, float cost) {
+        Path(Vertex last, double cost) {
             this.last = last;
             this.cost = cost;
         }

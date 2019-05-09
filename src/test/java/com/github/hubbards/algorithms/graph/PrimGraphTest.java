@@ -1,5 +1,8 @@
 package com.github.hubbards.algorithms.graph;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 public class PrimGraphTest extends WeightedGraphTest<PrimGraph> {
     @Override
     protected PrimGraph createGraph() {
@@ -7,8 +10,6 @@ public class PrimGraphTest extends WeightedGraphTest<PrimGraph> {
     }
 
     /*
-     * TODO: write unit test
-     *
      * Minimum spanning tree
      *
      * debug output
@@ -28,4 +29,9 @@ public class PrimGraphTest extends WeightedGraphTest<PrimGraph> {
      * total cost: 16.00
      *
      */
+
+    @Test
+    public void testPrim1() {
+        Assert.assertEquals(16.0, graph.prim1(), DELTA);
+    }
 }

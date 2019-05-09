@@ -81,7 +81,7 @@ public class KruskalGraph extends WeightedGraph {
 
     // pre : end-points exist, edge is simple, and cost is positive
     @Override
-    public void addWeightedEdge(String name1, String name2, float cost) {
+    public void addWeightedEdge(String name1, String name2, double cost) {
         // check preconditions
         if (!containsVertex(name1) || !containsVertex(name2)) {
             throw new GraphException("end-point(s) not found");
@@ -140,14 +140,16 @@ public class KruskalGraph extends WeightedGraph {
      * <p>
      * TODO: document running time
      *
+     * @return cost of minimum spanning tree.
      * @throws GraphException if this graph is not connected.
      */
-    public void kruskal() {
+    public double kruskal() {
         // TODO: check if graph is connected
         // reset bookkeeping fields to default values
         reset();
         // sort edges
         Collections.sort(list);
+        double cost = 0;
         // iterate over sorted edges
         for (Edge e : list) {
             int i = find(e.tail.index);
@@ -156,12 +158,11 @@ public class KruskalGraph extends WeightedGraph {
                 // e does not form a cycle with black edges
                 union(i, j);
                 e.color = Color.BLACK;
+                cost += e.cost;
             }
         }
-        debug();
+        return cost;
     }
-
-    // TODO: add getters for spanning tree and cost
 
     /*
      * Debugging method that prints bookkeeping fields and cost for each edge
@@ -277,13 +278,13 @@ public class KruskalGraph extends WeightedGraph {
         // Head of this edge.
         final Vertex head;
         // Cost of this edge.
-        final float cost;
+        final double cost;
 
         // Bookkeeping field for color of edge.
         Color color;
 
         // Construct edge with given head and cost.
-        Edge(Vertex tail, Vertex head, float cost) {
+        Edge(Vertex tail, Vertex head, double cost) {
             this.tail = tail;
             this.head = head;
             this.cost = cost;

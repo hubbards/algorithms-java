@@ -109,6 +109,8 @@ public class SearchGraph implements Graph {
      * <p>
      * NOTE: The time-complexity is <em>O(m + n)</em>, where <em>m</em> is the
      * number of edges and <em>n</em> is the number of vertices.
+     * <p>
+     * TODO: return a testable result
      *
      * @param name the name of the given source vertex.
      * @throws GraphException if this graph does not contain the given source

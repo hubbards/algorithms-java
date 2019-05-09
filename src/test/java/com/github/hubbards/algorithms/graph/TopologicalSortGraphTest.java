@@ -16,6 +16,7 @@ public class TopologicalSortGraphTest {
     @Before
     public void setUp() {
         TopologicalSortGraph graph = new TopologicalSortGraph();
+        // vertices
         graph.addVertex("a");
         graph.addVertex("b");
         graph.addVertex("c");
@@ -23,6 +24,7 @@ public class TopologicalSortGraphTest {
         graph.addVertex("e");
         graph.addVertex("f");
         graph.addVertex("g");
+        // directed edges
         graph.addEdge("a", "d");
         graph.addEdge("a", "e");
         graph.addEdge("a", "g");
@@ -35,9 +37,8 @@ public class TopologicalSortGraphTest {
         graph.addEdge("e", "f");
         graph.addEdge("e", "g");
         graph.addEdge("f", "g");
-
+        // topological sort
         List<String> list = Lists.newArrayList(graph.topologicalSort());
-
         order = Ordering.explicit(list);
     }
 

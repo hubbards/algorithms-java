@@ -76,7 +76,7 @@ public class PrimGraph extends WeightedGraph {
     }
 
     @Override
-    public void addWeightedEdge(String name1, String name2, float cost) {
+    public void addWeightedEdge(String name1, String name2, double cost) {
         // check preconditions
         if (!containsVertex(name1) || !containsVertex(name2)) {
             throw new GraphException("end-point(s) not found");
@@ -139,9 +139,10 @@ public class PrimGraph extends WeightedGraph {
      * <p>
      * TODO: document running time
      *
+     * @return cost of minimum spanning tree.
      * @throws GraphException if this graph is empty or not connected.
      */
-    public void prim1() {
+    public double prim1() {
         // TODO: check graph is connected
         if (s == null) {
             throw new GraphException("empty graph");
@@ -158,6 +159,7 @@ public class PrimGraph extends WeightedGraph {
             e.color = Color.GRAY;
             heap.add(e);
         }
+        double cost = 0;
         while (!heap.isEmpty()) {
             Edge e = heap.poll();
             // find end-point of e that is not black
@@ -169,6 +171,7 @@ public class PrimGraph extends WeightedGraph {
                 // e is minimum cost edge on cut
                 u.color = Color.BLACK;
                 e.color = Color.BLACK;
+                cost += e.cost;
                 // explore edges incident to u
                 for (Edge f : u.inc) {
                     if (f.color == Color.WHITE) {
@@ -179,7 +182,7 @@ public class PrimGraph extends WeightedGraph {
                 }
             }
         }
-        debug();
+        return cost;
     }
 
     /**
@@ -193,14 +196,13 @@ public class PrimGraph extends WeightedGraph {
      * <p>
      * TODO: document running time
      *
+     * @return cost of minimum spanning tree.
      * @throws GraphException if this graph is empty or not connected.
      */
-    public void prim2(String name) {
+    public double prim2() {
         // TODO: implement
         throw new RuntimeException("method not implemented");
     }
-
-    // TODO: add getters for spanning tree and cost
 
     /*
      * Debugging method that prints bookkeeping fields and cost for each edge
@@ -264,13 +266,13 @@ public class PrimGraph extends WeightedGraph {
         // Head of this edge.
         final Vertex head;
         // Cost of this edge.
-        final float cost;
+        final double cost;
 
         // Bookkeeping field for color of edge.
         Color color;
 
         // Construct edge with given head and cost.
-        Edge(Vertex tail, Vertex head, float cost) {
+        Edge(Vertex tail, Vertex head, double cost) {
             this.tail = tail;
             this.head = head;
             this.cost = cost;
