@@ -114,32 +114,42 @@ public class DijkstraGraph extends WeightedGraph {
     }
 
     /**
-     * Computes minimum cost path in this graph from a given source vertex to
-     * all other vertexes in the connected component of this graph containing
-     * the source vertex.
-     * <p>
-     * NOTE: Uses (binary min heap) priority queue to organize search.
-     * <p>
-     * NOTE: Algorithm is similar to BFS.
-     * <p>
-     * TODO: document running time
-     * <p>
-     * TODO: return testable result
+     * Computes the minimum cost of a path in this graph between two given
+     * vertices if the given vertices are in the same connected component of
+     * this graph.
      *
-     * @param name the name of the source vertex.
-     * @throws GraphException if this graph does not have the source vertex.
+     * @param name1 the name of the beginning vertex.
+     * @param name2 the name of the ending vertex.
+     * @return the minimum cost of a path in this graph between two given
+     * vertices if the given vertices are in the same connected component of
+     * this graph.
      */
-    public void dijkstra1(String name) {
+    public double minimumCostPath(String name1, String name2) {
+        return dijkstra1(name1, name2);
+    }
+
+    /*
+     * Dijkstra's algorithm computes minimum cost path in this graph from a
+     * given source vertex to all other vertexes in the connected component of
+     * this graph containing the source vertex.
+     *
+     * NOTE: Uses (binary min heap) priority queue to organize search.
+     * NOTE: Algorithm is similar to BFS.
+     *
+     * TODO: document running time
+     */
+    private double dijkstra1(String name1, String name2) {
         // check preconditions
-        if (!containsVertex(name)) {
+        if (!containsVertex(name1) || !containsVertex(name2)) {
             throw new GraphException("vertex not found");
         }
         // initialize bookkeeping fields
         reset();
+        double result = INFINITY;
         // use priority queue to organize search
         PriorityQueue<Path> heap = new PriorityQueue<Path>();
         // begin search at source vertex
-        Vertex s = map.get(name);
+        Vertex s = map.get(name1);
         s.cost = 0;
         // explore s
         s.color = Color.GRAY;
@@ -162,27 +172,26 @@ public class DijkstraGraph extends WeightedGraph {
                 }
                 // u fully explored
                 u.color = Color.BLACK;
+                if (u.name.equals(name2)) {
+                    result = u.cost;
+                }
             }
         }
-        debug();
+        return result;
     }
 
-    /**
-     * Computes minimum cost path in this graph from a given source vertex to
-     * all other vertexes in the connected component of this graph containing
-     * the source vertex.
-     * <p>
-     * NOTE: Uses (pairing heap) priority queue with decrease key operation to
-     * organize search.
-     * <p>
-     * NOTE: Algorithm is similar to BFS.
-     * <p>
-     * TODO: document running time
+    /*
+     * Dijkstra's algorithm computes minimum cost path in this graph from a
+     * given source vertex to all other vertexes in the connected component of
+     * this graph containing the source vertex.
      *
-     * @param name the name of the source vertex.
-     * @throws GraphException if this graph does not have the source vertex.
+     * NOTE: Uses (pairing heap) priority queue with decrease key operation to
+     *       organize search.
+     * NOTE: Algorithm is similar to BFS.
+     *
+     * TODO: document running time
      */
-    public void dijkstra2(String name) {
+    private double dijkstra2(String name1, String name2) {
         // TODO: implement
         throw new RuntimeException("method not implemented");
     }

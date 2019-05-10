@@ -19,6 +19,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * TODO: implement interface for graph with minimum spanning tree
  *
  * @author Spencer Hubbard
+ * @see WeightedGraph
  */
 public class KruskalGraph extends WeightedGraph {
     // Map name of vertex to vertex object.
@@ -79,7 +80,15 @@ public class KruskalGraph extends WeightedGraph {
         n++;
     }
 
-    // pre : end-points exist, edge is simple, and cost is positive
+    /**
+     * Adds an edge to this graph with given end-points and cost.
+     *
+     * @param name1 the name of one end-point.
+     * @param name2 the name of the other end-point.
+     * @param cost  the cost of the given edge.
+     * @throws GraphException if end-points don't exist, edge is not simple, or
+     *                        cost is non-positive.
+     */
     @Override
     public void addWeightedEdge(String name1, String name2, double cost) {
         // check preconditions
@@ -134,22 +143,30 @@ public class KruskalGraph extends WeightedGraph {
     }
 
     /**
-     * Finds the minimum spanning tree of this graph using Kruskal's algorithm.
-     * <p>
-     * NOTE: Uses disjoint sets data structure.
-     * <p>
-     * TODO: document running time
+     * Finds the cost of a minimum spanning tree of this graph using Kruskal's
+     * algorithm.
      *
-     * @return cost of minimum spanning tree.
+     * @return cost of a minimum spanning tree.
      * @throws GraphException if this graph is not connected.
      */
-    public double kruskal() {
+    public double minimumSpanningTreeCost() {
+        return kruskal();
+    }
+
+    /*
+     * Finds the minimum spanning tree of this graph using Kruskal's algorithm.
+     *
+     * NOTE: Uses disjoint sets data structure.
+     *
+     * TODO: document running time
+     */
+    private double kruskal() {
         // TODO: check if graph is connected
         // reset bookkeeping fields to default values
         reset();
+        double cost = 0;
         // sort edges
         Collections.sort(list);
-        double cost = 0;
         // iterate over sorted edges
         for (Edge e : list) {
             int i = find(e.tail.index);
@@ -169,11 +186,12 @@ public class KruskalGraph extends WeightedGraph {
      * in graph after Kruskal's algorithm.
      */
     private void debug() {
-        float cost = 0;
+        double cost = 0;
         System.out.println("debug output");
         System.out.println("edge:      color: cost:");
         for (Edge e : list) {
-            System.out.printf("(%-3.3s, %-3.3s) %-5s  %.2f\n",  e.tail.name, e.head.name, e.color, e.cost);
+            System.out.printf("(%-3.3s, %-3.3s) %-5s  %.2f\n",
+                    e.tail.name, e.head.name, e.color, e.cost);
             if (e.color == Color.BLACK) {
                 cost += e.cost;
             }

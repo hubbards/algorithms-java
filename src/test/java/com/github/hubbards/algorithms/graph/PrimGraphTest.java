@@ -27,11 +27,10 @@ public class PrimGraphTest extends WeightedGraphTest<PrimGraph> {
      * (e  , g  ) BLACK  6.00
      * (f  , g  ) BLACK  1.00
      * total cost: 16.00
-     *
      */
 
     @Test
-    public void testPrim1() {
-        Assert.assertEquals(16.0, graph.prim1(), DELTA);
+    public void testMinimumSpanningTreeCost() {
+        Assert.assertEquals(16, graph.minimumSpanningTreeCost(), DELTA);
     }
 }

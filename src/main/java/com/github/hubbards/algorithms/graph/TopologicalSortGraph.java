@@ -88,30 +88,6 @@ public class TopologicalSortGraph implements Graph {
     }
 
     /**
-     * Prints an adjacency list representation of this graph to standard output.
-     */
-    public void printAdjacencyList() {
-        System.out.println("vertex: adjacency list:");
-        for (Vertex u : map.values()) {
-            // print vertex v
-            System.out.printf("%-3.3s     ", u.name);
-            // print adjacency list for vertex v
-            Iterator<Vertex> i = u.adj.iterator();
-            if (i.hasNext()) {
-                Vertex v = i.next();
-                System.out.printf("%-3.3s", v.name);
-                while (i.hasNext()) {
-                    v = i.next();
-                    System.out.printf(" --> %-3.3s", v.name);
-                }
-                System.out.print("\n");
-            } else {
-                System.out.print("null\n");
-            }
-        }
-    }
-
-    /**
      * Topological sort algorithm for this graph starting with a given source
      * vertex. This graph has a topological order if and only if it has no
      * cycles.

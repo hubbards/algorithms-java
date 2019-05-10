@@ -1,5 +1,8 @@
 package com.github.hubbards.algorithms.graph;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 public class DijkstraGraphTest extends WeightedGraphTest<DijkstraGraph> {
     @Override
     protected DijkstraGraph createGraph() {
@@ -7,8 +10,6 @@ public class DijkstraGraphTest extends WeightedGraphTest<DijkstraGraph> {
     }
 
     /*
-     * TODO: write unit test
-     *
      * Shortest paths in graph from vertex a
      *
      * debug output
@@ -22,4 +23,11 @@ public class DijkstraGraphTest extends WeightedGraphTest<DijkstraGraph> {
      * g       BLACK  g   <-- d   <-- a
      *
      */
+
+    @Test
+    public void testMinimumCostPath() {
+        Assert.assertEquals(5, graph.minimumCostPath("a", "g"), DELTA);
+    }
+
+    // TODO: add more tests
 }

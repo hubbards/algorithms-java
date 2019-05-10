@@ -242,7 +242,8 @@ public class SearchGraph implements Graph {
         System.out.println("debug output");
         System.out.println("vertex: color: distance: path:");
         for (Vertex v : map.values()) {
-            System.out.printf("%-3.3s     %-5s  %-3d       %-3.3s", v.name, v.color, v.dist, v.name);
+            System.out.printf("%-3.3s     %-5s  %-3d       %-3.3s",
+                    v.name, v.color, v.dist, v.name);
             Vertex u = v.path;
             while (u != null) {
                 System.out.printf(" <-- %-3.3s", u.name);
@@ -260,7 +261,8 @@ public class SearchGraph implements Graph {
         System.out.println("debug output");
         System.out.println("vertex: color: left: right: distance: path:");
         for (Vertex v : map.values()) {
-            System.out.printf("%-3.3s     %-5s  %-3d   %-3d    %-3d       %-3.3s", v.name, v.color, v.left, v.right, v.dist, v.name);
+            System.out.printf("%-3.3s     %-5s  %-3d   %-3d    %-3d       %-3.3s",
+                    v.name, v.color, v.left, v.right, v.dist, v.name);
             Vertex u = v.path;
             while (u != null) {
                 System.out.printf(" <-- %-3.3s", u.name);

@@ -27,11 +27,10 @@ public class KruskalGraphTest extends WeightedGraphTest<KruskalGraph> {
      * (d  , f  ) WHITE  8.00
      * (b  , e  ) WHITE  10.00
      * total cost: 16.00
-     *
      */
 
     @Test
-    public void testKruskal() {
-        Assert.assertEquals(16.0, graph.kruskal(), DELTA);
+    public void testMinimumSpanningTreeCost() {
+        Assert.assertEquals(16, graph.minimumSpanningTreeCost(), DELTA);
     }
 }

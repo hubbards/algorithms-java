@@ -15,12 +15,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * TODO: document graph algorithms
  * <p>
  * TODO: add method which returns true if graph is connected, false otherwise
- * <p>
- * TODO: print some sort of visualization (possibly in driver program for a special graph)
- * <p>
- * TODO: implement interface for graph with minimum spanning tree
  *
  * @author Spencer Hubbard
+ * @see WeightedGraph
  */
 public class PrimGraph extends WeightedGraph {
     // Map name of vertex to vertex object.
@@ -75,6 +72,15 @@ public class PrimGraph extends WeightedGraph {
         s = v;
     }
 
+    /**
+     * Adds an edge to this graph with given end-points and cost.
+     *
+     * @param name1 the name of one end-point.
+     * @param name2 the name of the other end-point.
+     * @param cost  the cost of the given edge.
+     * @throws GraphException if end-points don't exist, edge is not simple, or
+     *                        cost is non-positive.
+     */
     @Override
     public void addWeightedEdge(String name1, String name2, double cost) {
         // check preconditions
@@ -131,24 +137,32 @@ public class PrimGraph extends WeightedGraph {
     }
 
     /**
-     * Finds the minimum spanning tree of this graph using Prim's algorithm.
-     * <p>
-     * NOTE: Algorithm is similar to Dijkstra's algorithm.
-     * <p>
-     * NOTE: Use (binary min heap) priority queue to organize search.
-     * <p>
-     * TODO: document running time
+     * Finds the cost of a minimum spanning tree of this graph using Prim's
+     * algorithm.
      *
-     * @return cost of minimum spanning tree.
+     * @return cost of a minimum spanning tree.
      * @throws GraphException if this graph is empty or not connected.
      */
-    public double prim1() {
+    public double minimumSpanningTreeCost() {
+        return prim1();
+    }
+
+    /*
+     * Finds the minimum spanning tree of this graph using Prim's algorithm.
+     *
+     * NOTE: Algorithm is similar to Dijkstra's algorithm.
+     * NOTE: Use (binary min heap) priority queue to organize search.
+     *
+     * TODO: document running time
+     */
+    private double prim1() {
         // TODO: check graph is connected
         if (s == null) {
             throw new GraphException("empty graph");
         }
         // initialize bookkeeping fields
         reset();
+        double cost = 0;
         // use priority queue to organize search
         PriorityQueue<Edge> heap = new PriorityQueue<Edge>();
         // begin search at source vertex
@@ -159,7 +173,6 @@ public class PrimGraph extends WeightedGraph {
             e.color = Color.GRAY;
             heap.add(e);
         }
-        double cost = 0;
         while (!heap.isEmpty()) {
             Edge e = heap.poll();
             // find end-point of e that is not black
@@ -185,21 +198,17 @@ public class PrimGraph extends WeightedGraph {
         return cost;
     }
 
-    /**
+    /*
      * Finds the minimum spanning tree of this graph with a given root node
      * using Prim's algorithm.
-     * <p>
-     * NOTE: Algorithm is similar to Dijkstra's algorithm.
-     * <p>
-     * NOTE: Uses (pairing heap) priority queue with decrease key operation to
-     * organize search.
-     * <p>
-     * TODO: document running time
      *
-     * @return cost of minimum spanning tree.
-     * @throws GraphException if this graph is empty or not connected.
+     * NOTE: Algorithm is similar to Dijkstra's algorithm.
+     * NOTE: Uses (pairing heap) priority queue with decrease key operation to
+     *       organize search.
+     *
+     * TODO: document running time
      */
-    public double prim2() {
+    private double prim2() {
         // TODO: implement
         throw new RuntimeException("method not implemented");
     }
@@ -209,11 +218,12 @@ public class PrimGraph extends WeightedGraph {
      * in graph after Prim's algorithm.
      */
     private void debug() {
-        float cost = 0;
+        double cost = 0;
         System.out.println("debug output");
         System.out.println("edge:      color: cost:");
         for (Edge e : list) {
-            System.out.printf("(%-3.3s, %-3.3s) %-5s  %.2f\n", e.tail.name, e.head.name, e.color, e.cost);
+            System.out.printf("(%-3.3s, %-3.3s) %-5s  %.2f\n",
+                    e.tail.name, e.head.name, e.color, e.cost);
             if (e.color == Color.BLACK) {
                 cost += e.cost;
             }

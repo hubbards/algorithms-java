@@ -35,8 +35,8 @@ public class ScheduleTest {
 
     @Test
     public void testIntervalSchedulingOnRequestsOrderedByStartTime() {
-        float[] start = {0, 1, 3};
-        float[] finish = {5, 2, 4};
+        float[] start = { 0, 1, 3 };
+        float[] finish = { 5, 2, 4 };
 
         boolean[] schedule = intervalScheduleI(start, finish);
 
@@ -49,8 +49,8 @@ public class ScheduleTest {
 
     @Test
     public void testIntervalSchedulingOnRequestsOrderedByDuration() {
-        float[] start = {0, 4, 2};
-        float[] finish = {3, 8, 5};
+        float[] start = { 0, 4, 2 };
+        float[] finish = { 3, 8, 5 };
 
         boolean[] schedule = intervalScheduleI(start, finish);
 
@@ -63,8 +63,8 @@ public class ScheduleTest {
 
     @Test
     public void testIntervalSchedulingOnRequestsOrderedByFinishTime() {
-        float[] start = {0, 1, 3};
-        float[] finish = {2, 4, 5};
+        float[] start = { 0, 1, 3 };
+        float[] finish = { 2, 4, 5 };
 
         boolean[] schedule = intervalScheduleI(start, finish);
 
@@ -85,8 +85,8 @@ public class ScheduleTest {
 
     @Test
     public void testIntervalPartitionOnSingleRequest() {
-        float[] start = {0};
-        float[] finish = {1};
+        float[] start = { 0 };
+        float[] finish = { 1 };
 
         int[] partition = intervalPartition(start, finish);
 
@@ -96,8 +96,8 @@ public class ScheduleTest {
 
     @Test
     public void testIntervalPartitionOnIncompatibleRequests() {
-        float[] start = {0, 1, 2};
-        float[] finish = {3, 4, 5};
+        float[] start = { 0, 1, 2 };
+        float[] finish = { 3, 4, 5 };
 
         int[] partition = intervalPartition(start, finish);
 
@@ -110,8 +110,8 @@ public class ScheduleTest {
 
     @Test
     public void testIntervalPartitionOnCompatibleRequests() {
-        float[] start = {0, 2, 4};
-        float[] finish = {1, 3, 5};
+        float[] start = { 0, 2, 4 };
+        float[] finish = { 1, 3, 5 };
 
         int[] partition = intervalPartition(start, finish);
 
@@ -123,8 +123,8 @@ public class ScheduleTest {
 
     @Test
     public void testIntervalPartitionOnMixedRequests() {
-        float[] start = {0, 1, 3};
-        float[] finish = {2, 4, 5};
+        float[] start = { 0, 1, 3 };
+        float[] finish = { 2, 4, 5 };
 
         int[] partition = intervalPartition(start, finish);
 
@@ -137,8 +137,8 @@ public class ScheduleTest {
     // TODO: convert to unit tests
     public static void main(String[] args) {
         // example of (unweighted) interval scheduling problem
-        float[] start = {1, 3, 0, 4, 3, 5, 6, 8};
-        float[] finish = {4, 5, 6, 7, 8, 9, 10, 11};
+        float[] start = { 1, 3, 0, 4, 3, 5, 6, 8 };
+        float[] finish = { 4, 5, 6, 7, 8, 9, 10, 11 };
         boolean[] solutionI = intervalScheduleI(start, finish);
         boolean[] solutionR = intervalScheduleR(start, finish);
 
@@ -151,8 +151,8 @@ public class ScheduleTest {
         // TODO: example of (weighted) interval scheduling problem
 
         // example of minimum lateness problem
-        float[] deadline = {6, 8, 9, 9, 14, 15};
-        float[] processing = {3, 2, 1, 4, 3, 2};
+        float[] deadline = { 6, 8, 9, 9, 14, 15 };
+        float[] processing = { 3, 2, 1, 4, 3, 2 };
         start = minLateness(deadline, processing);
 
         // print schedule

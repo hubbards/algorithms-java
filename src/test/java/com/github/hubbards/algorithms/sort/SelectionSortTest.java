@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class SelectionSortTest {
     @Test
     public void testSelectionSort() {
-        int[] a = {12, 123, 1, 28, 183, 16};
+        int[] a = { 12, 123, 1, 28, 183, 16 };
 
         selectionSort(a);
 
