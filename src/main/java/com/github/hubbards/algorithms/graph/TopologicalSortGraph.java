@@ -1,5 +1,8 @@
 package com.github.hubbards.algorithms.graph;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
+
 import java.util.*;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -103,7 +106,7 @@ public class TopologicalSortGraph implements Graph {
      * @return a topological order of the vertices in this graph.
      * @throws GraphException if this graph contains a cycle.
      */
-    public Iterable<String> topologicalSort() {
+    public Comparator<String> topologicalSort() {
         /*
          * Pseudocode:
          *
@@ -144,7 +147,7 @@ public class TopologicalSortGraph implements Graph {
         if (queue.size() != map.values().size()) {
             throw new GraphException("graph contains cycle");
         }
-        return queue;
+        return Ordering.explicit(Lists.newArrayList(queue));
     }
 
     /*

@@ -1,22 +1,17 @@
 package com.github.hubbards.algorithms.graph;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Comparator;
-import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
 public class TopologicalSortGraphTest {
-    private Comparator<String> order;
+    // TODO: write more unit tests
 
-    @Before
-    public void setUp() {
+    @Test
+    public void testTopologicalSortForComplexGraph() {
         TopologicalSortGraph graph = new TopologicalSortGraph();
-        // vertices
         graph.addVertex("a");
         graph.addVertex("b");
         graph.addVertex("c");
@@ -24,7 +19,6 @@ public class TopologicalSortGraphTest {
         graph.addVertex("e");
         graph.addVertex("f");
         graph.addVertex("g");
-        // directed edges
         graph.addEdge("a", "d");
         graph.addEdge("a", "e");
         graph.addEdge("a", "g");
@@ -37,14 +31,8 @@ public class TopologicalSortGraphTest {
         graph.addEdge("e", "f");
         graph.addEdge("e", "g");
         graph.addEdge("f", "g");
-        // topological sort
-        List<String> list = Lists.newArrayList(graph.topologicalSort());
-        order = Ordering.explicit(list);
-    }
-
-    // adjacent vertices
-    @Test
-    public void testTopologicalSort1() {
+        Comparator<String> order = graph.topologicalSort();
+        // adjacent vertices
         assertTrue(order.compare("a", "d") < 0);
         assertTrue(order.compare("a", "e") < 0);
         assertTrue(order.compare("a", "g") < 0);
@@ -57,11 +45,7 @@ public class TopologicalSortGraphTest {
         assertTrue(order.compare("e", "f") < 0);
         assertTrue(order.compare("e", "g") < 0);
         assertTrue(order.compare("f", "g") < 0);
-    }
-
-    // path connected vertices (transitivity)
-    @Test
-    public void testTopologicalSort2() {
+        // path connected vertices (transitivity)
         assertTrue(order.compare("a", "f") < 0); // a < e < f
         assertTrue(order.compare("b", "d") < 0); // b < c < d
         assertTrue(order.compare("b", "g") < 0); // b < e < g

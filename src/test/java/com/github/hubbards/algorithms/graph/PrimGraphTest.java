@@ -1,36 +1,36 @@
 package com.github.hubbards.algorithms.graph;
 
-import org.junit.Assert;
 import org.junit.Test;
 
-public class PrimGraphTest extends WeightedGraphTest<PrimGraph> {
-    @Override
-    protected PrimGraph createGraph() {
-        return new PrimGraph();
-    }
+import static org.junit.Assert.assertEquals;
 
-    /*
-     * Minimum spanning tree
-     *
-     * debug output
-     * edge:      color: cost:
-     * (a  , b  ) BLACK  2.00
-     * (a  , c  ) GRAY   4.00
-     * (a  , d  ) BLACK  1.00
-     * (b  , d  ) GRAY   3.00
-     * (b  , e  ) GRAY   10.00
-     * (c  , d  ) BLACK  2.00
-     * (c  , f  ) GRAY   5.00
-     * (d  , e  ) GRAY   7.00
-     * (d  , f  ) GRAY   8.00
-     * (d  , g  ) BLACK  4.00
-     * (e  , g  ) BLACK  6.00
-     * (f  , g  ) BLACK  1.00
-     * total cost: 16.00
-     */
+public class PrimGraphTest {
+    private static final double DELTA = 0.001;
+
+    // TODO: write more unit tests
 
     @Test
-    public void testMinimumSpanningTreeCost() {
-        Assert.assertEquals(16, graph.minimumSpanningTreeCost(), DELTA);
+    public void testMinimumSpanningTreeCostForComplexGraph() {
+        PrimGraph graph = new PrimGraph();
+        graph.addVertex("a");
+        graph.addVertex("b");
+        graph.addVertex("c");
+        graph.addVertex("d");
+        graph.addVertex("e");
+        graph.addVertex("f");
+        graph.addVertex("g");
+        graph.addWeightedEdge("a", "b", 2);
+        graph.addWeightedEdge("a", "c", 4);
+        graph.addWeightedEdge("a", "d", 1);
+        graph.addWeightedEdge("b", "d", 3);
+        graph.addWeightedEdge("b", "e", 10);
+        graph.addWeightedEdge("c", "d", 2);
+        graph.addWeightedEdge("c", "f", 5);
+        graph.addWeightedEdge("d", "e", 7);
+        graph.addWeightedEdge("d", "f", 8);
+        graph.addWeightedEdge("d", "g", 4);
+        graph.addWeightedEdge("e", "g", 6);
+        graph.addWeightedEdge("f", "g", 1);
+        assertEquals(16, graph.minimumSpanningTreeCost(), DELTA);
     }
 }
