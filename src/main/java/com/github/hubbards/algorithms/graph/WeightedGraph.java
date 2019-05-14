@@ -4,7 +4,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * WeightedGraph represents a directed or undirected graph where each edge has
- * a weight (or cost).s
+ * a weight (or cost).
  *
  * @author Spencer Hubbard
  */
