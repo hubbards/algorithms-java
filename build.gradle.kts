@@ -7,23 +7,28 @@
  */
 
 plugins {
-    // Apply the java-library plugin to add support for Java Library
-    `java-library`
+  // Apply the java-library plugin to add support for Java Library
+  `java-library`
 }
 
 repositories {
-    // Use jcenter for resolving your dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
+  // Use jcenter for resolving your dependencies.
+  // You can declare any Maven/Ivy/file repository here.
+  jcenter()
 }
 
 dependencies {
-    // This dependency is exported to consumers, that is to say found on their compile classpath.
-    // api("org.apache.commons:commons-math3:3.6.1")
+  // This dependency is exported to consumers, that is to say found on their compile classpath.
+  //api(group = "org.apache.commons", name = "commons-math3", version = "3.6.1")
 
-    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    implementation("com.google.guava:guava:26.0-jre")
+  // This dependency is used internally, and not exposed to consumers on their own compile classpath.
+  implementation(group = "com.google.guava", name = "guava", version = "26.0-jre")
 
-    // Use JUnit test framework
-    testImplementation("junit:junit:4.12")
+  // Use JUnit test framework
+  testImplementation(group = "junit", name = "junit", version = "4.12")
+}
+
+java {
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
 }
