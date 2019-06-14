@@ -106,37 +106,6 @@ public class PrimGraph extends WeightedGraph {
     }
 
     /**
-     * Prints an adjacency matrix representation of this graph to standard
-     * output.
-     */
-    public void printAdjacencyMatrix() {
-        // index vertices of graph
-        Vertex[] v = map.values().toArray(new Vertex[0]);
-        // print column indices
-        System.out.print("   ");
-        for (int i = 0; i < v.length; i++) {
-            System.out.printf(" %-3.3s", v[i].name);
-        }
-        System.out.println();
-        // print rows of adjacency matrix
-        for (int i = 0; i < v.length; i++) {
-            // print row index
-            System.out.printf("%-3.3s", v[i].name);
-            // print row i of adjacency matrix
-            for (int j = 0; j < v.length; j++) {
-                if (containsEdge(v[i].name, v[j].name)) {
-                    // vertex i is adjacent to vertex j
-                    System.out.printf(" %-3d", 1);
-                } else {
-                    // vertex i is not adjacent to vertex j
-                    System.out.printf(" %-3d", 0);
-                }
-            }
-            System.out.println();
-        }
-    }
-
-    /**
      * Finds the cost of a minimum spanning tree of this graph using Prim's
      * algorithm.
      *
@@ -214,24 +183,6 @@ public class PrimGraph extends WeightedGraph {
     }
 
     /*
-     * Debugging method that prints bookkeeping fields and cost for each edge
-     * in graph after Prim's algorithm.
-     */
-    private void debug() {
-        double cost = 0;
-        System.out.println("debug output");
-        System.out.println("edge:      color: cost:");
-        for (Edge e : list) {
-            System.out.printf("(%-3.3s, %-3.3s) %-5s  %.2f\n",
-                    e.tail.name, e.head.name, e.color, e.cost);
-            if (e.color == Color.BLACK) {
-                cost += e.cost;
-            }
-        }
-        System.out.printf("total cost: %.2f\n", cost);
-    }
-
-    /*
      * Reset bookkeeping fields to default values for each vertex and edge in
      * graph.
      */
@@ -249,22 +200,22 @@ public class PrimGraph extends WeightedGraph {
     // Vertex represents a vertex of a graph.
     private static class Vertex {
         // Name of this vertex.
-        final String name;
+        public final String name;
         // Incidence list for this vertex.
-        List<Edge> inc;
+        public List<Edge> inc;
 
         // Bookkeeping field for color of this vertex.
-        Color color;
+        public Color color;
 
         // Construct vertex with given name.
-        Vertex(String name) {
+        public Vertex(String name) {
             this.name = name;
             inc = new LinkedList<Edge>();
             reset();
         }
 
         // Set bookkeeping field to default value for this vertex.
-        void reset() {
+        public void reset() {
             color = Color.WHITE;
         }
     }
@@ -272,17 +223,17 @@ public class PrimGraph extends WeightedGraph {
     // Edge represents a weighted edge of a graph.
     private static class Edge implements Comparable<Edge> {
         // Tail of this edge.
-        final Vertex tail;
+        public final Vertex tail;
         // Head of this edge.
-        final Vertex head;
+        public final Vertex head;
         // Cost of this edge.
-        final double cost;
+        public final double cost;
 
         // Bookkeeping field for color of edge.
-        Color color;
+        public Color color;
 
         // Construct edge with given head and cost.
-        Edge(Vertex tail, Vertex head, double cost) {
+        public Edge(Vertex tail, Vertex head, double cost) {
             this.tail = tail;
             this.head = head;
             this.cost = cost;
@@ -290,7 +241,7 @@ public class PrimGraph extends WeightedGraph {
         }
 
         // Set bookkeeping field to default value for this edge.
-        void reset() {
+        public void reset() {
             color = Color.WHITE;
         }
 

@@ -155,17 +155,17 @@ public class TopologicalSortGraph implements Graph {
      */
     private static class Vertex {
         // Name of this vertex.
-        final String name;
+        public final String name;
         // Adjacency list for this vertex.
-        List<Vertex> adj;
+        public List<Vertex> adj;
         // In-degree for this vertex.
-        int deg;
+        public int deg;
 
         // Bookkeeping field for topological sort algorithm.
-        int temp;
+        public int temp;
 
         // Construct vertex with given name.
-        Vertex(String name) {
+        public Vertex(String name) {
             this.name = name;
             adj = new LinkedList<Vertex>();
             deg = 0;
@@ -173,7 +173,7 @@ public class TopologicalSortGraph implements Graph {
         }
 
         // Set bookkeeping field to default value.
-        void reset() {
+        public void reset() {
             temp = deg;
         }
     }

@@ -78,30 +78,6 @@ public class SearchGraph implements Graph {
     }
 
     /**
-     * Prints an adjacency list representation of this graph to standard output.
-     */
-    public void printAdjacencyList() {
-        System.out.print("vertex: adjacency list:\n");
-        for (Vertex u : map.values()) {
-            // print vertex v
-            System.out.printf("%-3.3s     ", u.name);
-            // print adjacency list for vertex v
-            Iterator<Vertex> i = u.adj.iterator();
-            if (i.hasNext()) {
-                Vertex v = i.next();
-                System.out.printf("%-3.3s", v.name);
-                while (i.hasNext()) {
-                    v = i.next();
-                    System.out.printf(" --> %-3.3s", v.name);
-                }
-                System.out.print("\n");
-            } else {
-                System.out.print("null\n");
-            }
-        }
-    }
-
-    /**
      * Does a breadth-first search (BFS) of this graph starting with a given
      * source vertex.
      * <p>
@@ -289,30 +265,30 @@ public class SearchGraph implements Graph {
     // Vertex represents a vertex of a graph.
     private static class Vertex {
         // Name of this vertex.
-        final String name;
+        public final String name;
         // Adjacency list for this vertex.
-        List<Vertex> adj;
+        public List<Vertex> adj;
 
         // Bookkeeping field for recursive DFS.
-        int left;
+        public int left;
         // Bookkeeping field for recursive DFS.
-        int right;
+        public int right;
         // Bookkeeping field for length of path to this vertex.
-        int dist;
+        public int dist;
         // Bookkeeping field for previous vertex in path to this vertex.
-        Vertex path;
+        public Vertex path;
         // Bookkeeping field for color of this vertex.
-        Color color;
+        public Color color;
 
         // Construct vertex with given name.
-        Vertex(String name) {
+        public Vertex(String name) {
             this.name = name;
             adj = new LinkedList<Vertex>();
             reset();
         }
 
         // Set bookkeeping fields to default values for this vertex.
-        void reset() {
+        public void reset() {
             left = 0;
             right = 0;
             dist = 0;

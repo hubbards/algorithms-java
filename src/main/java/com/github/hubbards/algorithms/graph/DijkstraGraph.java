@@ -83,37 +83,6 @@ public class DijkstraGraph extends WeightedGraph {
     }
 
     /**
-     * Prints an adjacency matrix representation of this graph to standard
-     * output.
-     */
-    public void printAdjacencyMatrix() {
-        // index vertices of graph
-        Vertex[] v = map.values().toArray(new Vertex[0]);
-        // print column indices
-        System.out.print("   ");
-        for (int i = 0; i < v.length; i++) {
-            System.out.printf(" %-3.3s", v[i].name);
-        }
-        System.out.println();
-        // print rows of adjacency matrix
-        for (int i = 0; i < v.length; i++) {
-            // print row index
-            System.out.printf("%-3.3s", v[i].name);
-            // print row i of adjacency matrix
-            for (int j = 0; j < v.length; j++) {
-                if (containsEdge(v[i].name, v[j].name)) {
-                    // vertex i is adjacent to vertex j
-                    System.out.printf(" %-3d", 1);
-                } else {
-                    // vertex i is not adjacent to vertex j
-                    System.out.printf(" %-3d", 0);
-                }
-            }
-            System.out.println();
-        }
-    }
-
-    /**
      * Computes the minimum cost of a path in this graph between two given
      * vertices if the given vertices are in the same connected component of
      * this graph.
@@ -196,25 +165,6 @@ public class DijkstraGraph extends WeightedGraph {
         throw new RuntimeException("method not implemented");
     }
 
-    /*
-     * Debugging method that prints bookkeeping fields and path for each vertex
-     * in graph after Dijkstra's algorithm.
-     */
-    private void debug() {
-        System.out.println("debug output");
-        System.out.println("vertex: color: path:");
-        for (Vertex v : map.values()) {
-            System.out.printf("%-3.3s     %-5s  %-3.3s", v.name, v.color, v.name);
-            Vertex u = v.last;
-            while (u != null) {
-                System.out.printf(" <-- %-3.3s", u.name);
-                u = u.last;
-            }
-            System.out.print("\n");
-        }
-        System.out.print("\n");
-    }
-
     // Reset bookkeeping fields to default values for each vertex in graph.
     private void reset() {
         for (Vertex v : map.values()) {
@@ -225,27 +175,27 @@ public class DijkstraGraph extends WeightedGraph {
     // Vertex represents a vertex of a graph.
     private static class Vertex {
         // Name of this vertex.
-        final String name;
+        public final String name;
         // Adjacency list for this vertex.
-        List<Edge> adj;
+        public List<Edge> adj;
         // TODO: add field for position in pairing heap of path to this vertex for dijkstra2
 
         // Bookkeeping field for total cost of path to this vertex.
-        double cost;
+        public double cost;
         // Bookkeeping field for last vertex in path to this vertex.
-        Vertex last;
+        public Vertex last;
         // Bookkeeping field for color of this vertex.
-        Color color;
+        public Color color;
 
         // Construct vertex with given name.
-        Vertex(String name) {
+        public Vertex(String name) {
             this.name = name;
             adj = new LinkedList<Edge>();
             reset();
         }
 
         // Set bookkeeping fields to default values for this vertex.
-        void reset() {
+        public void reset() {
             cost = INFINITY;
             last = null;
             color = Color.WHITE;
@@ -255,12 +205,12 @@ public class DijkstraGraph extends WeightedGraph {
     // Edge represents a weighted and directed edge of a graph.
     private static class Edge {
         // Head of this edge.
-        final Vertex head;
+        public final Vertex head;
         // Cost of this edge.
-        final double cost;
+        public final double cost;
 
         // Construct edge with given head and cost.
-        Edge(Vertex head, double cost) {
+        public Edge(Vertex head, double cost) {
             this.head = head;
             this.cost = cost;
         }
@@ -272,12 +222,12 @@ public class DijkstraGraph extends WeightedGraph {
      */
     private static class Path implements Comparable<Path> {
         // Last vertex in this path.
-        Vertex last;
+        public Vertex last;
         // Cost of this path.
-        double cost;
+        public double cost;
 
         // Construct path with given last vertex and cost.
-        Path(Vertex last, double cost) {
+        public Path(Vertex last, double cost) {
             this.last = last;
             this.cost = cost;
         }
