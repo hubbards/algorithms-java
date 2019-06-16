@@ -4,8 +4,8 @@ import java.util.Queue;
 import java.util.LinkedList;
 
 /**
- * This program implements the Gale-Shapley algorithm for the stable matching
- * problem.
+ * This class contains an implementation the Gale-Shapley algorithm for the
+ * stable matching problem.
  *
  * @author Spencer Hubbard
  */
@@ -14,44 +14,45 @@ public final class GaleShapley {
         throw new AssertionError("static class");
     }
 
-    /*
-     * Pseudocode:
-     *
-     * Initially all men and women are free
-     * While there are free men who haven't proposed to every woman yet
-     *   Let m be such a man
-     *   Let w be the next highest-ranked woman in m's preference list
-     *   If w is free
-     *     m and w become engaged
-     *   Else w is engaged with some man m'
-     *     If w prefers m to m'
-     *       m' becomes free
-     *       m and w become engaged
-     *     Else w prefers m' to m
-     *       m remains free
-     *     Endif
-     *   Endif
-     * Endwhile
-     * Return the engaged pairs
-     */
-
     /**
      * Gale-Shapley algorithm for the stable matching problem. The time
      * complexity of this algorithm is linear.
      *
-     * @param left  preference lists for left, i.e., <code>left[i][j]</code> is
-     *              the rank of right <code>j</code> in left <code>i</code>'s
-     *              preference list.
+     * @param left preference lists for left, i.e., <code>left[i][j]</code> is
+     * the rank of right <code>j</code> in left <code>i</code>'s preference
+     * list.
      * @param right preference lists for right, i.e., <code>right[i][j]</code>
-     *              is the rank of left <code>j</code> in right <code>i</code>'s
-     *              preference list.
+     * is the rank of left <code>j</code> in right <code>i</code>'s preference
+     * list.
+     *
      * @return stable matching for given instance of stable matching problem.
+     *
      * @throws IllegalArgumentException if <code>left</code> and
-     *                                  <code>right</right> are not the
-     *                                  preference lists for an instance of the
-     *                                  stable matching problem.
+     * <code>right</right> are not the preference lists for an instance of the
+     * stable matching problem.
      */
     public static int[] stableMatching(int[][] left, int[][] right) {
+        /*
+         * Pseudocode:
+         *
+         * Initially all men and women are free
+         * While there are free men who haven't proposed to every woman yet
+         *   Let m be such a man
+         *   Let w be the next highest-ranked woman in m's preference list
+         *   If w is free
+         *     m and w become engaged
+         *   Else w is engaged with some man m'
+         *     If w prefers m to m'
+         *       m' becomes free
+         *       m and w become engaged
+         *     Else w prefers m' to m
+         *       m remains free
+         *     Endif
+         *   Endif
+         * Endwhile
+         * Return the engaged pairs
+         */
+
         if (!isInstance(left, right)) {
             throw new IllegalArgumentException();
         }
