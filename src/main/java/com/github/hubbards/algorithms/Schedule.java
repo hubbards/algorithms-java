@@ -7,6 +7,8 @@ import java.util.List;
 /**
  * This class contains some implementations of (greedy and dynamic programming)
  * algorithms for some scheduling problems.
+ * <p>
+ * TODO: move to schedule package
  *
  * @author Spencer Hubbard
  */
@@ -18,14 +20,15 @@ public final class Schedule {
     /**
      * Iterative greedy algorithm for (unweighted) interval scheduling problem.
      *
-     * @param start  start times for requests, i.e., <code>start[i]</code> is
-     *               the start time of the <code>i</code>th request.
+     * @param start start times for requests, i.e., <code>start[i]</code> is the
+     * start time of the <code>i</code>th request.
      * @param finish finish times for requests, i.e., <code>finish[i]</code> is
-     *               the finish time of the <code>i</code>th request.
+     * the finish time of the <code>i</code>th request.
+     *
      * @return largest compatible subset of given requests.
+     *
      * @throws IllegalArgumentException if <code>start</code> and
-     *                                  <code>finish</code> have different
-     *                                  length
+     * <code>finish</code> have different length
      */
     public static boolean[] intervalScheduleI(float[] start, float[] finish) {
         validateRequests(start, finish);
@@ -55,16 +58,16 @@ public final class Schedule {
     /**
      * Recursive greedy algorithm for (unweighted) interval scheduling problem.
      *
-     * @param start  start times for requests, i.e., <code>start[i]</code> is
-     *               the start time of the <code>i</code>th request
+     * @param start start times for requests, i.e., <code>start[i]</code> is the
+     * start time of the <code>i</code>th request
      * @param finish finish times for requests, i.e., <code>finish[i]</code> is
-     *               the finish time of the <code>i</code>th request. Moreover,
-     *               the requests are assumed to be ordered by increasing finish
-     *               time
+     * the finish time of the <code>i</code>th request. Moreover, the requests
+     * are assumed to be ordered by increasing finish time
+     *
      * @return largest compatible subset of given requests
+     *
      * @throws IllegalArgumentException if <code>start</code> and
-     *                                  <code>finish</code> have different
-     *                                  length
+     * <code>finish</code> have different length
      */
     public static boolean[] intervalScheduleR(float[] start, float[] finish) {
         validateRequests(start, finish);
@@ -97,14 +100,16 @@ public final class Schedule {
     }
 
     /**
-     * Dynamic programming algorithm for (weighted) interval scheduling problem.
+     * Dynamic programming algorithm for (weighted) interval scheduling
+     * problem.
      *
-     * @param start  start times for requests, i.e., <code>start[i]</code> is
-     *               the start time of request <code>i</code>
+     * @param start start times for requests, i.e., <code>start[i]</code> is the
+     * start time of request <code>i</code>
      * @param finish finish times for requests, i.e., <code>finish[i]</code> is
-     *               the finish time of request <code>i</code>
+     * the finish time of request <code>i</code>
      * @param weight weight for requests, i.e., <code>weight[i]</code> is the
-     *               weight / payoff for scheduling request <code>i</code>
+     * weight / payoff for scheduling request <code>i</code>
+     *
      * @return compatible subset of given requests with maximum weight
      */
     public static boolean[] intervalSchedule(float[] start, float[] finish, float[] weight) {
@@ -116,15 +121,16 @@ public final class Schedule {
      * Greedy algorithm for solving the interval partition problem: schedule all
      * requests so that the fewest number of resources are used.
      *
-     * @param start  array of start times. <code>start[i]</code> is the start
-     *               time of request <code>i</code>
+     * @param start array of start times. <code>start[i]</code> is the start
+     * time of request <code>i</code>
      * @param finish array of finish times. <code>finish[i]</code> is the finish
-     *               time of request <code>i</code>
+     * time of request <code>i</code>
+     *
      * @return resource assignment for all requests where the value at index
-     *         <code>i</code> is the resource assigned to request <code>i</code>
+     * <code>i</code> is the resource assigned to request <code>i</code>
+     *
      * @throws IllegalArgumentException if <code>start</code> and
-     *                                  <code>finish</code> have different
-     *                                  length
+     * <code>finish</code> have different length
      */
     public static int[] intervalPartition(float[] start, float[] finish) {
         validateRequests(start, finish);
@@ -151,11 +157,12 @@ public final class Schedule {
     /**
      * Greedy algorithm for minimum lateness problem.
      *
-     * @param deadline   deadlines for requests, i.e., <code>deadline[i]</code>
-     *                   is the deadline for the <code>i</code>th request.
+     * @param deadline deadlines for requests, i.e., <code>deadline[i]</code> is
+     * the deadline for the <code>i</code>th request.
      * @param processing processing time for requests, i.e.,
-     *                   <code>processing[i]</code> is the time to process the
-     *                   <code>i</code>th request.
+     * <code>processing[i]</code> is the time to process the <code>i</code>th
+     * request.
+     *
      * @return start times for schedule with minimum (maximum) lateness.
      */
     public static float[] minLateness(float[] deadline, float[] processing) {
