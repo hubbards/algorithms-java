@@ -1,4 +1,4 @@
-package com.github.hubbards.algorithms;
+package com.github.hubbards.algorithms.schedule;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -7,8 +7,6 @@ import java.util.List;
 /**
  * This class contains some implementations of (greedy and dynamic programming)
  * algorithms for some scheduling problems.
- * <p>
- * TODO: move to schedule package
  *
  * @author Spencer Hubbard
  */

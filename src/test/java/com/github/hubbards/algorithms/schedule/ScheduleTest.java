@@ -1,12 +1,12 @@
-package com.github.hubbards.algorithms;
+package com.github.hubbards.algorithms.schedule;
 
 import org.junit.Test;
 
-import static com.github.hubbards.algorithms.Schedule.intervalPartition;
-import static com.github.hubbards.algorithms.Schedule.intervalScheduleI;
-import static com.github.hubbards.algorithms.Schedule.intervalScheduleR;
-import static com.github.hubbards.algorithms.Schedule.maxLateness;
-import static com.github.hubbards.algorithms.Schedule.minLateness;
+import static com.github.hubbards.algorithms.schedule.Schedule.intervalPartition;
+import static com.github.hubbards.algorithms.schedule.Schedule.intervalScheduleI;
+import static com.github.hubbards.algorithms.schedule.Schedule.intervalScheduleR;
+import static com.github.hubbards.algorithms.schedule.Schedule.maxLateness;
+import static com.github.hubbards.algorithms.schedule.Schedule.minLateness;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
