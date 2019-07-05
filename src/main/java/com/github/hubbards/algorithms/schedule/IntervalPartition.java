@@ -19,12 +19,12 @@ public class IntervalPartition {
     private Map<IntervalRequest, String> resourceMap;
 
     // Greedy algorithm for solving the interval partition problem.
-    private IntervalPartition(PriorityQueue<IntervalRequest> requests) {
+    private IntervalPartition(Queue<IntervalRequest> requests) {
         resourceMap = new HashMap<IntervalRequest, String>();
 
         Set<IntervalRequest> others = new HashSet<IntervalRequest>();
         while (!requests.isEmpty()) {
-            IntervalRequest request = requests.poll();
+            IntervalRequest request = requests.remove();
 
             Set<String> used = new HashSet<String>();
             for (IntervalRequest key : resourceMap.keySet()) {
@@ -105,14 +105,7 @@ public class IntervalPartition {
          * Constructs a new builder.
          */
         public Builder() {
-            requests = new PriorityQueue<IntervalRequest>(
-                    new Comparator<IntervalRequest>() {
-                        @Override
-                        public int compare(IntervalRequest r1, IntervalRequest r2) {
-                            return r1.getStart().compareTo(r2.getStart());
-                        }
-                    }
-            );
+            requests = new PriorityQueue<IntervalRequest>(new StartOrder());
         }
 
         /**

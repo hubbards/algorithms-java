@@ -19,14 +19,14 @@ public class IntervalSchedule {
     private Set<IntervalRequest> accepted;
 
     // Greedy algorithm for (unweighted) interval scheduling problem.
-    private IntervalSchedule(PriorityQueue<IntervalRequest> requests) {
+    private IntervalSchedule(Queue<IntervalRequest> requests) {
         accepted = new HashSet<IntervalRequest>();
 
         while (!requests.isEmpty()) {
-            IntervalRequest request = requests.poll();
+            IntervalRequest request = requests.remove();
             accepted.add(request);
-            while (!requests.isEmpty() && requests.peek().getStart().compareTo(request.getFinish()) < 0) {
-                requests.poll();
+            while (!requests.isEmpty() && requests.element().getStart().compareTo(request.getFinish()) < 0) {
+                requests.remove();
             }
         }
     }
@@ -67,14 +67,7 @@ public class IntervalSchedule {
          * Constructs a new builder.
          */
         public Builder() {
-            requests = new PriorityQueue<>(
-                    new Comparator<IntervalRequest>() {
-                        @Override
-                        public int compare(IntervalRequest r1, IntervalRequest r2) {
-                            return r1.getFinish().compareTo(r2.getFinish());
-                        }
-                    }
-            );
+            requests = new PriorityQueue<IntervalRequest>(new FinishOrder());
         }
 
         /**
@@ -110,10 +103,11 @@ public class IntervalSchedule {
         }
 
         /**
-         * Builds a solution to the instance of the interval partition problem
+         * Builds a solution to the instance of the interval scheduling problem
          * represented by this builder.
          *
-         * @return a solution to the instance of the interval partition problem.
+         * @return a solution to the instance of the interval scheduling
+         * problem.
          */
         public IntervalSchedule build() {
             return new IntervalSchedule(requests);

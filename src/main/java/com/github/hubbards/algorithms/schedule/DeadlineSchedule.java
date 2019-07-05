@@ -21,7 +21,7 @@ public class DeadlineSchedule {
     private Map<DeadlineRequest, Instant> startMap;
 
     // Greedy algorithm for the minimum lateness problem.
-    private DeadlineSchedule(Instant start, PriorityQueue<DeadlineRequest> requests) {
+    private DeadlineSchedule(Instant start, Queue<DeadlineRequest> requests) {
         checkNotNull(start);
         checkNotNull(requests);
 
@@ -29,7 +29,7 @@ public class DeadlineSchedule {
         startMap = new HashMap<DeadlineRequest, Instant>();
 
         while (!requests.isEmpty()) {
-            DeadlineRequest request = requests.poll();
+            DeadlineRequest request = requests.remove();
 
             startMap.put(request, start);
 
@@ -100,14 +100,7 @@ public class DeadlineSchedule {
          */
         public Builder() {
             start = DEFAULT_START;
-            requests = new PriorityQueue<DeadlineRequest>(
-                    new Comparator<DeadlineRequest>() {
-                        @Override
-                        public int compare(DeadlineRequest r1, DeadlineRequest r2) {
-                            return r1.getDeadline().compareTo(r2.getDeadline());
-                        }
-                    }
-            );
+            requests = new PriorityQueue<DeadlineRequest>(new DeadlineOrder());
         }
 
         /**

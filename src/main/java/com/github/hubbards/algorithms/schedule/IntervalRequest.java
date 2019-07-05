@@ -23,15 +23,20 @@ class IntervalRequest {
      * Constructs a new (unweighted) interval request with a name, start time,
      * and finish time.
      *
-     * @param name name of the request
-     * @param start start time of the request
-     * @param finish finish time of the request
+     * @param name name of the request.
+     * @param start start time of the request.
+     * @param finish finish time of the request.
+     *
+     * @throws NullPointerException if any parameter is null.
+     * @throws IllegalArgumentException if start time is greater than or equal
+     * to finish time.
      */
     public IntervalRequest(String name, Instant start, Instant finish) {
         checkNotNull(name);
         checkNotNull(start);
         checkNotNull(finish);
         checkArgument(start.compareTo(finish) < 0, "start must be less than finish");
+
         this.name = name;
         this.start = start;
         this.finish = finish;
@@ -40,7 +45,7 @@ class IntervalRequest {
     /**
      * Getter for name.
      *
-     * @return name of this request
+     * @return name of this request.
      */
     public String getName() {
         return name;
@@ -49,7 +54,7 @@ class IntervalRequest {
     /**
      * Getter for start time.
      *
-     * @return start time for this request
+     * @return start time for this request.
      */
     public Instant getStart() {
         return start;
@@ -58,7 +63,7 @@ class IntervalRequest {
     /**
      * Getter for finish time.
      *
-     * @return finish time for this request
+     * @return finish time for this request.
      */
     public Instant getFinish() {
         return finish;
