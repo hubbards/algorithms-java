@@ -33,6 +33,7 @@ public class IntervalPartitionTest {
         IntervalPartition partition = builder.build();
 
         assertEquals(1, partition.size());
+
         assertTrue(partition.contains(request));
     }
 
@@ -62,9 +63,11 @@ public class IntervalPartitionTest {
         IntervalPartition partition = builder.build();
 
         assertEquals(3, partition.size());
+
         assertTrue(partition.contains(request1));
         assertTrue(partition.contains(request2));
         assertTrue(partition.contains(request3));
+
         assertFalse(partition.sameResource(request1, request2));
         assertFalse(partition.sameResource(request1, request3));
         assertFalse(partition.sameResource(request2, request3));
@@ -96,9 +99,11 @@ public class IntervalPartitionTest {
         IntervalPartition partition = builder.build();
 
         assertEquals(1, partition.size());
+
         assertTrue(partition.contains(request1));
         assertTrue(partition.contains(request2));
         assertTrue(partition.contains(request3));
+
         assertTrue(partition.sameResource(request1, request2));
         assertTrue(partition.sameResource(request1, request3));
         assertTrue(partition.sameResource(request2, request3));
@@ -130,9 +135,11 @@ public class IntervalPartitionTest {
         IntervalPartition partition = builder.build();
 
         assertEquals(2, partition.size());
+
         assertTrue(partition.contains(request1));
         assertTrue(partition.contains(request2));
         assertTrue(partition.contains(request3));
+
         assertFalse(partition.sameResource(request1, request2));
         assertTrue(partition.sameResource(request1, request3));
         assertFalse(partition.sameResource(request2, request3));

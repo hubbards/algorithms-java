@@ -40,12 +40,12 @@ public class DeadlineScheduleTest {
     @Test
     public void testOrderedByDuration() {
         DeadlineRequest request1 = new DeadlineRequest(
-                "name1",
+                "name-1",
                 Duration.ofSeconds(1),
                 Instant.ofEpochSecond(3)
         );
         DeadlineRequest request2 = new DeadlineRequest(
-                "name2",
+                "name-2",
                 Duration.ofSeconds(2),
                 Instant.ofEpochSecond(2)
         );
@@ -58,6 +58,7 @@ public class DeadlineScheduleTest {
         DeadlineSchedule schedule = builder.build();
 
         assertEquals(Duration.ZERO, schedule.maxLateness());
+
         assertEquals(Instant.ofEpochSecond(2), schedule.start(request1));
         assertEquals(Instant.EPOCH, schedule.start(request2));
     }
@@ -65,32 +66,32 @@ public class DeadlineScheduleTest {
     @Test
     public void testLargeInstance() {
         DeadlineRequest request1 = new DeadlineRequest(
-                "name1",
+                "name-1",
                 Duration.ofSeconds(3),
                 Instant.ofEpochSecond(6)
         );
         DeadlineRequest request2 = new DeadlineRequest(
-                "name2",
+                "name-2",
                 Duration.ofSeconds(2),
                 Instant.ofEpochSecond(8)
         );
         DeadlineRequest request3 = new DeadlineRequest(
-                "name3",
+                "name-3",
                 Duration.ofSeconds(1),
                 Instant.ofEpochSecond(9)
         );
         DeadlineRequest request4 = new DeadlineRequest(
-                "name4",
+                "name-4",
                 Duration.ofSeconds(4),
                 Instant.ofEpochSecond(9)
         );
         DeadlineRequest request5 = new DeadlineRequest(
-                "name5",
+                "name-5",
                 Duration.ofSeconds(3),
                 Instant.ofEpochSecond(14)
         );
         DeadlineRequest request6 = new DeadlineRequest(
-                "name6",
+                "name-6",
                 Duration.ofSeconds(2),
                 Instant.ofEpochSecond(15)
         );
@@ -107,5 +108,12 @@ public class DeadlineScheduleTest {
         DeadlineSchedule schedule = builder.build();
 
         assertEquals(Duration.ofSeconds(1), schedule.maxLateness());
+
+        assertEquals(Instant.EPOCH, schedule.start(request1));
+        assertEquals(Instant.ofEpochSecond(3), schedule.start(request2));
+        assertEquals(Instant.ofEpochSecond(5), schedule.start(request3));
+        assertEquals(Instant.ofEpochSecond(6), schedule.start(request4));
+        assertEquals(Instant.ofEpochSecond(10), schedule.start(request5));
+        assertEquals(Instant.ofEpochSecond(13), schedule.start(request6));
     }
 }
