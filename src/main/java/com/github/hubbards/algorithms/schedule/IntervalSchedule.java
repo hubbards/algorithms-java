@@ -1,8 +1,5 @@
 package com.github.hubbards.algorithms.schedule;
 
-import com.google.common.collect.Iterators;
-import com.google.common.collect.PeekingIterator;
-
 import java.util.*;
 
 import static com.google.common.base.Preconditions.*;
@@ -22,15 +19,14 @@ public class IntervalSchedule {
     private Set<IntervalRequest> accepted;
 
     // Greedy algorithm for (unweighted) interval scheduling problem.
-    private IntervalSchedule(SortedSet<IntervalRequest> requests) {
+    private IntervalSchedule(PriorityQueue<IntervalRequest> requests) {
         accepted = new HashSet<IntervalRequest>();
 
-        PeekingIterator<IntervalRequest> itr = Iterators.peekingIterator(requests.iterator());
-        while (itr.hasNext()) {
-            IntervalRequest request = itr.next();
+        while (!requests.isEmpty()) {
+            IntervalRequest request = requests.poll();
             accepted.add(request);
-            while (itr.hasNext() && itr.peek().getStart().compareTo(request.getFinish()) < 0) {
-                itr.next();
+            while (!requests.isEmpty() && requests.peek().getStart().compareTo(request.getFinish()) < 0) {
+                requests.poll();
             }
         }
     }
@@ -65,23 +61,17 @@ public class IntervalSchedule {
      * scheduling problem.
      */
     public static class Builder {
-        // TODO: replace with priority queue
-        private SortedSet<IntervalRequest> requests;
+        private PriorityQueue<IntervalRequest> requests;
 
         /**
          * Constructs a new builder.
          */
         public Builder() {
-            requests = new TreeSet<IntervalRequest>(
+            requests = new PriorityQueue<>(
                     new Comparator<IntervalRequest>() {
                         @Override
                         public int compare(IntervalRequest r1, IntervalRequest r2) {
-                            int result = r1.getFinish().compareTo(r2.getFinish());
-                            if (result != 0) {
-                                return result;
-                            } else {
-                                return r1.getName().compareTo(r2.getName());
-                            }
+                            return r1.getFinish().compareTo(r2.getFinish());
                         }
                     }
             );

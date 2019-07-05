@@ -4,8 +4,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.*;
 
 /**
  * DeadlineSchedule represents a solution to the minimum lateness problem: given
@@ -22,14 +21,16 @@ public class DeadlineSchedule {
     private Map<DeadlineRequest, Instant> startMap;
 
     // Greedy algorithm for the minimum lateness problem.
-    private DeadlineSchedule(Instant start, SortedSet<DeadlineRequest> requests) {
+    private DeadlineSchedule(Instant start, PriorityQueue<DeadlineRequest> requests) {
         checkNotNull(start);
         checkNotNull(requests);
 
         maxLateness = null;
         startMap = new HashMap<DeadlineRequest, Instant>();
 
-        for (DeadlineRequest request : requests) {
+        while (!requests.isEmpty()) {
+            DeadlineRequest request = requests.poll();
+
             startMap.put(request, start);
 
             Duration lateness = request.lateness(start);
@@ -92,24 +93,18 @@ public class DeadlineSchedule {
         public static final Instant DEFAULT_START = Instant.EPOCH;
 
         private Instant start;
-        // TODO: replace with priority queue
-        private SortedSet<DeadlineRequest> requests;
+        private PriorityQueue<DeadlineRequest> requests;
 
         /**
          * Constructs a new builder.
          */
         public Builder() {
             start = DEFAULT_START;
-            requests = new TreeSet<DeadlineRequest>(
+            requests = new PriorityQueue<DeadlineRequest>(
                     new Comparator<DeadlineRequest>() {
                         @Override
                         public int compare(DeadlineRequest r1, DeadlineRequest r2) {
-                            int result = r1.getDeadline().compareTo(r2.getDeadline());
-                            if (result != 0) {
-                                return result;
-                            } else {
-                                return r1.getName().compareTo(r2.getName());
-                            }
+                            return r1.getDeadline().compareTo(r2.getDeadline());
                         }
                     }
             );

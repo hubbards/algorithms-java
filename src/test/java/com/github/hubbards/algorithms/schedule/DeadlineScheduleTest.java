@@ -111,8 +111,21 @@ public class DeadlineScheduleTest {
 
         assertEquals(Instant.EPOCH, schedule.start(request1));
         assertEquals(Instant.ofEpochSecond(3), schedule.start(request2));
-        assertEquals(Instant.ofEpochSecond(5), schedule.start(request3));
-        assertEquals(Instant.ofEpochSecond(6), schedule.start(request4));
+
+        // requests 3 and 4 have the same deadline so either one could be
+        // scheduled before the other
+        Instant start3 = schedule.start(request3);
+        Instant start4 = schedule.start(request4);
+        if (start3.compareTo(start4) < 0) {
+            // request 3 scheduled before request 4
+            assertEquals(Instant.ofEpochSecond(5), start3);
+            assertEquals(Instant.ofEpochSecond(6), start4);
+        } else {
+            // request 4 scheduled before request 3
+            assertEquals(Instant.ofEpochSecond(5), start4);
+            assertEquals(Instant.ofEpochSecond(9), start3);
+        }
+
         assertEquals(Instant.ofEpochSecond(10), schedule.start(request5));
         assertEquals(Instant.ofEpochSecond(13), schedule.start(request6));
     }

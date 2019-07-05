@@ -2,8 +2,7 @@ package com.github.hubbards.algorithms.schedule;
 
 import java.util.*;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.*;
 
 /**
  * IntervalPartition represents a solution to the interval partition problem:
@@ -20,11 +19,13 @@ public class IntervalPartition {
     private Map<IntervalRequest, String> resourceMap;
 
     // Greedy algorithm for solving the interval partition problem.
-    private IntervalPartition(SortedSet<IntervalRequest> requests) {
+    private IntervalPartition(PriorityQueue<IntervalRequest> requests) {
         resourceMap = new HashMap<IntervalRequest, String>();
 
         Set<IntervalRequest> others = new HashSet<IntervalRequest>();
-        for (IntervalRequest request : requests) {
+        while (!requests.isEmpty()) {
+            IntervalRequest request = requests.poll();
+
             Set<String> used = new HashSet<String>();
             for (IntervalRequest key : resourceMap.keySet()) {
                 used.add(key.getName());
@@ -35,6 +36,7 @@ public class IntervalPartition {
                     used.remove(resourceMap.get(other));
                 }
             }
+
             String label = request.getName();
             if (!used.isEmpty()) {
                 label = used.iterator().next();
@@ -97,23 +99,17 @@ public class IntervalPartition {
      * Builder is a builder for an instance of the interval partition problem.
      */
     public static class Builder {
-        // TODO: replace with priority queue
-        private SortedSet<IntervalRequest> requests;
+        private PriorityQueue<IntervalRequest> requests;
 
         /**
          * Constructs a new builder.
          */
         public Builder() {
-            requests = new TreeSet<IntervalRequest>(
+            requests = new PriorityQueue<IntervalRequest>(
                     new Comparator<IntervalRequest>() {
                         @Override
                         public int compare(IntervalRequest r1, IntervalRequest r2) {
-                            int result = r1.getStart().compareTo(r2.getStart());
-                            if (result != 0) {
-                                return result;
-                            } else {
-                                return r1.getName().compareTo(r2.getName());
-                            }
+                            return r1.getStart().compareTo(r2.getStart());
                         }
                     }
             );
