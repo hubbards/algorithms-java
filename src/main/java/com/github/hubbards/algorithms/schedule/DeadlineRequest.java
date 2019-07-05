@@ -7,11 +7,18 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * TODO: document
+ * DeadlineRequest represents a request to use a resource for a duration of time
+ * and deadline.
+ * <p>
+ * A request can be scheduled on a resource for an interval of time. A scheduled
+ * request is considered late if the finish time is greater than the deadline.
+ * <p>
+ * Two requests can be scheduled on the same resource if the intervals they are
+ * scheduled for don't overlap.
  *
  * @author Spencer Hubbard
  */
-public class DeadlineRequest implements Comparable<DeadlineRequest> {
+public class DeadlineRequest {
     private String name;
     private Duration duration;
     private Instant deadline;
@@ -19,15 +26,19 @@ public class DeadlineRequest implements Comparable<DeadlineRequest> {
     /**
      * Constructs a new deadline request with a name, duration, and deadline.
      *
-     * @param name name of the request
-     * @param duration duration of the request
-     * @param deadline deadline of the request
+     * @param name name of the request.
+     * @param duration duration of the request.
+     * @param deadline deadline of the request.
+     *
+     * @throws NullPointerException if any parameter is null.
+     * @throws IllegalArgumentException if duration is not positive.
      */
     public DeadlineRequest(String name, Duration duration, Instant deadline) {
         checkNotNull(name);
         checkNotNull(duration);
         checkNotNull(deadline);
         checkArgument(!duration.isNegative(), "duration must be positive");
+
         this.name = name;
         this.duration = duration;
         this.deadline = deadline;
@@ -36,7 +47,7 @@ public class DeadlineRequest implements Comparable<DeadlineRequest> {
     /**
      * Getter for name.
      *
-     * @return name of this request
+     * @return name of this request.
      */
     public String getName() {
         return name;
@@ -45,43 +56,66 @@ public class DeadlineRequest implements Comparable<DeadlineRequest> {
     /**
      * Getter for duration.
      *
-     * @return duration of this request
+     * @return duration of this request.
      */
     public Duration getDuration() {
         return duration;
     }
 
     /**
-     * Getter for deadline of this request.
+     * Getter for deadline.
      *
-     * @return deadline of this request
+     * @return deadline of this request.
      */
     public Instant getDeadline() {
         return deadline;
     }
 
     /**
-     * Computes earliness if this request is completed at a given finish time.
+     * Computes finish time if this request is started at a given time.
      *
-     * @param finish time when this request is completed
+     * @param start time when this request is started.
      *
-     * @return earliness of this request. The result is negative if the request
-     * is late, i.e., finished after the deadline.
+     * @return finish time of this request.
+     *
+     * @throws NullPointerException if given start time is null.
      */
-    public Duration earliness(Instant finish) {
-        return Duration.between(deadline, finish);
+    public Instant finish(Instant start) {
+        checkNotNull(start);
+
+        return start.plus(getDuration());
     }
 
     /**
-     * Computes lateness if this request is completed at a given finish time.
+     * Computes earliness if this request is started at a given time.
      *
-     * @param finish time when this request is completed
+     * @param start time when this request is started.
+     *
+     * @return earliness of this request. The result is negative if the request
+     * is late, i.e., finished after the deadline.
+     *
+     * @throws NullPointerException if given time is null.
+     */
+    public Duration earliness(Instant start) {
+        checkNotNull(start);
+
+        return Duration.between(finish(start), getDeadline());
+    }
+
+    /**
+     * Computes lateness if this request is started at a given time.
+     *
+     * @param start time when this request is started.
      *
      * @return lateness of this request. The result is negative if the request
      * is early, i.e., finished before the deadline.
+     *
+     * @throws NullPointerException if given time is null.
      */
-    public Duration lateness(Instant finish) {
-        return earliness(finish).negated();
+    public Duration lateness(Instant start) {
+        checkNotNull(start);
+
+        return earliness(start).negated();
     }
 
     @Override
@@ -97,10 +131,5 @@ public class DeadlineRequest implements Comparable<DeadlineRequest> {
         } else {
             return false;
         }
-    }
-
-    @Override
-    public int compareTo(DeadlineRequest other) {
-        return duration.compareTo(other.duration);
     }
 }

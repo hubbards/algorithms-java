@@ -7,7 +7,7 @@ import java.time.Instant;
 import static org.junit.Assert.*;
 
 /**
- * TODO: document
+ * This class represents a simple test suite for {@link IntervalPartition}.
  *
  * @author Spencer Hubbard
  */
@@ -37,7 +37,7 @@ public class IntervalPartitionTest {
     }
 
     @Test
-    public void testIncompatibleRequests() {
+    public void testAllIncompatibleRequests() {
         IntervalRequest request1 = new IntervalRequest(
                 "name-1",
                 Instant.ofEpochSecond(0),
@@ -71,7 +71,7 @@ public class IntervalPartitionTest {
     }
 
     @Test
-    public void testCompatibleRequests() {
+    public void testAllCompatibleRequests() {
         IntervalRequest request1 = new IntervalRequest(
                 "name-1",
                 Instant.ofEpochSecond(0),

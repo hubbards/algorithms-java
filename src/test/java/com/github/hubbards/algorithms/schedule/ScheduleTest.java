@@ -151,8 +151,8 @@ public class ScheduleTest {
         // TODO: example of (weighted) interval scheduling problem
 
         // example of minimum lateness problem
-        float[] deadline = { 6, 8, 9, 9, 14, 15 };
         float[] processing = { 3, 2, 1, 4, 3, 2 };
+        float[] deadline = { 6, 8, 9, 9, 14, 15 };
         start = minLateness(deadline, processing);
 
         // print schedule

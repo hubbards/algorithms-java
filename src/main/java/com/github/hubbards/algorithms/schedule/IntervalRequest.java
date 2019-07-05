@@ -1,13 +1,16 @@
 package com.github.hubbards.algorithms.schedule;
 
-import java.time.Duration;
 import java.time.Instant;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * TODO: document
+ * IntervalRequest represents an (unweighted) request to use a resource for an
+ * interval of time.
+ *
+ * Two requests are compatible if their intervals don't overlap. Compatible
+ * requests can be scheduled on the same resource.
  *
  * @author Spencer Hubbard
  */

@@ -6,11 +6,17 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * TODO: document
+ * IntervalPartition represents a solution to the interval partition problem:
+ * given a collection of interval requests, schedule all requests so that the
+ * fewest number of resources are used.
+ * <p>
+ * A solution is found using a greedy algorithm where the requests are ordered
+ * by start time.
  *
  * @author Spencer Hubbard
  */
 public class IntervalPartition {
+    // map from request to resource label
     private Map<IntervalRequest, String> resourceMap;
 
     // Greedy algorithm for solving the interval partition problem.
@@ -40,34 +46,46 @@ public class IntervalPartition {
     }
 
     /**
-     * TODO: document
+     * Counts the number of resources used in this solution.
      *
-     * @return
+     * @return the number of resources used in this solution.
      */
     public int size() {
         return (int) resourceMap.values().stream().distinct().count();
     }
 
     /**
-     * TODO: document
+     * Checks if this solution has scheduled a given request.
      *
-     * @param request
+     * @param request the request to check for.
      *
-     * @return
+     * @return <code>true</code> if this solution has scheduled the given
+     * request, otherwise <code>false</code>.
+     *
+     * @throws NullPointerException if the given request is null.
      */
     public boolean contains(IntervalRequest request) {
+        checkNotNull(request);
+
         return resourceMap.containsKey(request);
     }
 
     /**
-     * TODO: document
+     * Check if this solution has scheduled two given requests on the same
+     * resource.
      *
-     * @param request1
-     * @param request2
+     * @param request1 one request to check for.
+     * @param request2 another request to check for.
      *
-     * @return
+     * @return <code>true</code> if this solution has scheduled the two requests
+     * on the same resource, otherwise <code>false</code>.
+     *
+     * @throws NullPointerException if either of the given requests are null.
      */
     public boolean sameResource(IntervalRequest request1, IntervalRequest request2) {
+        checkNotNull(request1);
+        checkNotNull(request2);
+
         if (resourceMap.containsKey(request1) && resourceMap.containsKey(request2)) {
             return resourceMap.get(request1).equals(resourceMap.get(request2));
         } else {
@@ -76,29 +94,55 @@ public class IntervalPartition {
     }
 
     /**
-     * TODO: document
+     * Builder is a builder for an instance of the interval partition problem.
      */
     public static class Builder {
+        // TODO: replace with priority queue
         private SortedSet<IntervalRequest> requests;
 
         /**
-         * TODO: document
+         * Constructs a new builder.
          */
         public Builder() {
             requests = new TreeSet<IntervalRequest>(
                     new Comparator<IntervalRequest>() {
                         @Override
                         public int compare(IntervalRequest r1, IntervalRequest r2) {
-                            return r1.getStart().compareTo(r2.getStart());
+                            int result = r1.getStart().compareTo(r2.getStart());
+                            if (result != 0) {
+                                return result;
+                            } else {
+                                return r1.getName().compareTo(r2.getName());
+                            }
                         }
                     }
             );
         }
 
         /**
-         * TODO: document
+         * Checks if this builder contains a given request.
          *
-         * @param request
+         * @param request the request to check for.
+         *
+         * @return <code>true</code> if this builder contains the given request,
+         * <code>false</code> otherwise.
+         *
+         * @throws NullPointerException if the given request is null.
+         */
+        public boolean hasRequest(IntervalRequest request) {
+            checkNotNull(request);
+
+            return requests.contains(request);
+        }
+
+        /**
+         * Adds a given request to this builder.
+         *
+         * @param request the request to add.
+         *
+         * @throws NullPointerException if the given request is null.
+         * @throws IllegalArgumentException if the given request has already
+         * been added to this builder.
          */
         public void addRequest(IntervalRequest request) {
             checkNotNull(request);
@@ -108,9 +152,10 @@ public class IntervalPartition {
         }
 
         /**
-         * TODO: document
+         * Builds a solution to the instance of the interval partition problem
+         * represented by this builder.
          *
-         * @return
+         * @return a solution to the instance of the interval partition problem.
          */
         public IntervalPartition build() {
             return new IntervalPartition(requests);
