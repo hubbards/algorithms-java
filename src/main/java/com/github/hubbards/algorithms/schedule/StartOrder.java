@@ -8,7 +8,7 @@ import java.util.Comparator;
  *
  * @author Spencer Hubbard
  */
-public class StartOrder implements Comparator<IntervalRequest> {
+class StartOrder implements Comparator<IntervalRequest> {
     @Override
     public int compare(IntervalRequest request1, IntervalRequest request2) {
         return request1.getStart().compareTo(request2.getStart());

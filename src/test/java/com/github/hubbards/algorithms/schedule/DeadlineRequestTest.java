@@ -172,4 +172,24 @@ public class DeadlineRequestTest {
                 request.lateness(Instant.EPOCH)
         );
     }
+
+    @Test
+    public void testSameNameEquals() {
+        DeadlineRequest request1 = new DeadlineRequest(
+                "name",
+                Duration.ofSeconds(1),
+                Instant.EPOCH
+        );
+        DeadlineRequest request2 = new DeadlineRequest(
+                "name",
+                Duration.ofSeconds(2),
+                Instant.ofEpochSecond(1)
+        );
+
+        assertEquals(request1, request2);
+    }
+
+    // TODO: test equals, see https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#equals-java.lang.Object-
+
+    // TODO: test hashCode, see https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#hashCode--
 }

@@ -18,7 +18,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  *
  * @author Spencer Hubbard
  */
-public class DeadlineRequest {
+class DeadlineRequest {
     private String name;
     private Duration duration;
     private Instant deadline;

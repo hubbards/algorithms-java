@@ -8,7 +8,7 @@ import java.util.Comparator;
  *
  * @author Spencer Hubbard
  */
-public class DeadlineOrder implements Comparator<DeadlineRequest> {
+class DeadlineOrder implements Comparator<DeadlineRequest> {
     @Override
     public int compare(DeadlineRequest request1, DeadlineRequest request2) {
         return request1.getDeadline().compareTo(request2.getDeadline());

@@ -8,7 +8,7 @@ import java.util.Comparator;
  *
  * @author Spencer Hubbard
  */
-public class FinishOrder implements Comparator<IntervalRequest> {
+class FinishOrder implements Comparator<IntervalRequest> {
     @Override
     public int compare(IntervalRequest request1, IntervalRequest request2) {
         return request1.getFinish().compareTo(request2.getFinish());
