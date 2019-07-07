@@ -1,5 +1,7 @@
 package com.github.hubbards.algorithms.graph;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
 import org.junit.Test;
 
 import java.util.Comparator;
@@ -36,7 +38,9 @@ public class TopologicalSortGraphTest {
         graph.addEdge("e", "f");
         graph.addEdge("e", "g");
         graph.addEdge("f", "g");
-        Comparator<String> order = graph.topologicalSort();
+
+        Comparator<String> order = Ordering.explicit(graph.topologicalSort());
+
         // adjacent vertices
         assertTrue(order.compare("a", "d") < 0);
         assertTrue(order.compare("a", "e") < 0);
@@ -50,6 +54,7 @@ public class TopologicalSortGraphTest {
         assertTrue(order.compare("e", "f") < 0);
         assertTrue(order.compare("e", "g") < 0);
         assertTrue(order.compare("f", "g") < 0);
+
         // path connected vertices (transitivity)
         assertTrue(order.compare("a", "f") < 0); // a < e < f
         assertTrue(order.compare("b", "d") < 0); // b < c < d
