@@ -7,7 +7,7 @@ import java.time.Instant;
 import static org.junit.Assert.*;
 
 /**
- * This class represents a simple test suite for {@link IntervalSchedule}.
+ * This class is a simple test suite for {@link IntervalSchedule}.
  *
  * @author Spencer Hubbard
  */

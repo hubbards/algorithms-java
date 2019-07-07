@@ -7,7 +7,7 @@ import java.time.Instant;
 import static org.junit.Assert.*;
 
 /**
- * This class represents a simple test suite for {@link IntervalPartition}.
+ * This class is a simple test suite for {@link IntervalPartition}.
  *
  * @author Spencer Hubbard
  */

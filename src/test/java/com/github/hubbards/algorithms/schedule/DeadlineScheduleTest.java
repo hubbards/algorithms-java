@@ -8,7 +8,7 @@ import java.time.Instant;
 import static org.junit.Assert.*;
 
 /**
- * This class represents a simple test suite for {@link DeadlineSchedule}.
+ * This class is a simple test suite for {@link DeadlineSchedule}.
  *
  * @author Spencer Hubbard
  */
