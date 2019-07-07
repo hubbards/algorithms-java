@@ -36,6 +36,7 @@ public class DijkstraGraphTest {
         graph.addWeightedEdge("d", "g", 4);
         graph.addWeightedEdge("e", "g", 6);
         graph.addWeightedEdge("f", "g", 1);
+
         assertEquals(5, graph.minimumCostPath("a", "g"), DELTA);
     }
 }

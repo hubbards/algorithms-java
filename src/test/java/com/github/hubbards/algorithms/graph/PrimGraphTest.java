@@ -36,6 +36,7 @@ public class PrimGraphTest {
         graph.addWeightedEdge("d", "g", 4);
         graph.addWeightedEdge("e", "g", 6);
         graph.addWeightedEdge("f", "g", 1);
+
         assertEquals(16, graph.minimumSpanningTreeCost(), DELTA);
     }
 }
