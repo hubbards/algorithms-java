@@ -4,8 +4,13 @@ import org.junit.Test;
 
 import java.util.Comparator;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
+/**
+ * This class is a simple test suite for {@link TopologicalSortGraph}.
+ *
+ * @author Spencer Hubbard
+ */
 public class TopologicalSortGraphTest {
     // TODO: write more unit tests
 

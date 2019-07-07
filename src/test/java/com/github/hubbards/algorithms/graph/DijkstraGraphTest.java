@@ -2,8 +2,13 @@ package com.github.hubbards.algorithms.graph;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
+/**
+ * This class is a simple test suite for {@link DijkstraGraph}.
+ *
+ * @author Spencer Hubbard
+ */
 public class DijkstraGraphTest {
     private static final double DELTA = 0.001;
 

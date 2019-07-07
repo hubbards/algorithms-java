@@ -1,7 +1,6 @@
 package com.github.hubbards.algorithms.graph;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +16,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * TODO: add method which returns true if graph is connected, false otherwise
  * <p>
  * TODO: add method which returns true if graph is bipartite, false otherwise
+ * <p>
+ * TODO: add test suite
  *
  * @author Spencer Hubbard
  */

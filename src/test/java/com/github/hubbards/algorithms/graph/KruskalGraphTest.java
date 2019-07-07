@@ -2,8 +2,14 @@ package com.github.hubbards.algorithms.graph;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
+
+/**
+ * This class is a simple test suite for {@link KruskalGraph}.
+ *
+ * @author Spencer Hubbard
+ */
 public class KruskalGraphTest {
     private static final double DELTA = 0.001;
 
