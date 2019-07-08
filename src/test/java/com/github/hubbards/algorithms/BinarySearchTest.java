@@ -9,6 +9,15 @@ import static org.junit.Assert.assertEquals;
 
 public class BinarySearchTest {
     @Test
+    public void testBinarySearchIEmptyArray() {
+        int[] a = {};
+
+        int i = binarySearchI(a, 3);
+
+        assertEquals(-1, i);
+    }
+
+    @Test
     public void testBinarySearchINotFound() {
         int[] a = { 1, 2, 4, 5, 6, 7, 8, 9 };
 
@@ -45,6 +54,15 @@ public class BinarySearchTest {
 
         assertEquals(8, i);
         assertEquals(9, a[i]);
+    }
+
+    @Test
+    public void testBinarySearchREmptyArray() {
+        int[] a = {};
+
+        int i = binarySearchR(a, 3);
+
+        assertEquals(-1, i);
     }
 
     @Test
