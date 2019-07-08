@@ -27,7 +27,7 @@ public final class BinarySearch {
         int min = 0;
         int max = a.length - 1;
         while (min <= max) {
-            int mid = (max - min - 1) / 2 + min; // FIXME
+            int mid = (max - min - 1) / 2 + min;
             if (a[mid] == x) {
                 // target found
                 return mid;
