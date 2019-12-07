@@ -41,16 +41,19 @@ public final class GaleShapley {
          *   Let w be the next highest-ranked woman in m's preference list
          *   If w is free
          *     m and w become engaged
-         *   Else w is engaged with some man m'
+         *   Else
+         *     w is engaged with some man m'
          *     If w prefers m to m'
          *       m' becomes free
          *       m and w become engaged
-         *     Else w prefers m' to m
+         *     Else
+         *       w prefers m' to m
          *       m remains free
-         *     Endif
-         *   Endif
-         * Endwhile
+         *     EndIf
+         *   EndIf
+         * EndWhile
          * Return the engaged pairs
+         *
          */
 
         if (!isInstance(left, right)) {
