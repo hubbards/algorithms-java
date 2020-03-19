@@ -8,7 +8,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  *
  * @author Spencer Hubbard
  */
-public class WeightedRequest implements Weighted {
+public class WeightedRequest {
     private String name;
     private int weight;
 
@@ -38,7 +38,11 @@ public class WeightedRequest implements Weighted {
         return name;
     }
 
-    @Override
+    /**
+     * Getter for weight.
+     *
+     * @return weight of this request.
+     */
     public int getWeight() {
         return weight;
     }

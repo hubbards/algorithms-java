@@ -25,9 +25,9 @@ public class SubsetSum {
     private int totalWeight;
 
     // Dynamic programming algorithm for subset sum problem.
-    private SubsetSum(int weightLimit, Collection<WeightedRequest> requests) {
+    private SubsetSum(int weightLimit, List<WeightedRequest> requests) {
         this.weightLimit = weightLimit;
-        this.requests = new ArrayList<>(requests);
+        this.requests = requests;
 
         memo = new int[this.requests.size()][this.weightLimit + 1];
 
@@ -78,7 +78,7 @@ public class SubsetSum {
         public static int DEFAULT_WEIGHT_LIMIT = 0;
 
         private int weightLimit;
-        private PriorityQueue<WeightedRequest> requests;
+        private Set<WeightedRequest> requests;
 
         /**
          * Constructs a new builder with given weight limit.
@@ -91,7 +91,7 @@ public class SubsetSum {
             checkArgument(weightLimit >= 0, "weight must be non-negative");
 
             this.weightLimit = weightLimit;
-            requests = new PriorityQueue<WeightedRequest>(new WeightOrder());
+            requests = new HashSet<WeightedRequest>();
         }
 
         /**
@@ -162,7 +162,7 @@ public class SubsetSum {
          * @return a solution to the instance of the subset sum problem.
          */
         public SubsetSum build() {
-            return new SubsetSum(weightLimit, requests);
+            return new SubsetSum(weightLimit, new ArrayList<>(requests));
         }
     }
 }

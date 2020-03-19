@@ -15,7 +15,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @author Spencer Hubbard
  */
 public class WeightedIntervalSchedule {
-    private WeightedIntervalRequest[] requests;
+    private List<WeightedIntervalRequest> requests;
 
     // Memoized solutions to sub-problems.
     private int[] memo;
@@ -23,10 +23,10 @@ public class WeightedIntervalSchedule {
 
     // TODO: replace with bottom-up construction
     // Dynamic programming algorithm for weighted interval scheduling problem.
-    private WeightedIntervalSchedule(WeightedIntervalRequest[] requests) {
+    private WeightedIntervalSchedule(List<WeightedIntervalRequest> requests) {
         this.requests = requests;
 
-        memo = new int[requests.length];
+        memo = new int[requests.size()];
         for (int i = 0; i < memo.length; i++) {
             memo[i] = -1;
         }
@@ -41,9 +41,9 @@ public class WeightedIntervalSchedule {
         }
 
         if (memo[i] == -1) {
-            WeightedIntervalRequest request = requests[i];
+            WeightedIntervalRequest request = requests.get(i);
             int j = i - 1;
-            while (j >= 0 && request.getStart().compareTo(requests[j].getFinish()) < 0) {
+            while (j >= 0 && request.getStart().compareTo(requests.get(j).getFinish()) < 0) {
                 j--;
             }
             memo[i] = Math.max(request.getWeight() + computeOpt(j), computeOpt(i - 1));
@@ -125,7 +125,7 @@ public class WeightedIntervalSchedule {
          * scheduling problem.
          */
         public WeightedIntervalSchedule build() {
-            return new WeightedIntervalSchedule((WeightedIntervalRequest[]) requests.toArray());
+            return new WeightedIntervalSchedule(new ArrayList<>(requests));
         }
     }
 }

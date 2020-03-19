@@ -13,7 +13,7 @@ import static com.google.common.base.Preconditions.checkArgument;
  *
  * @author Spencer Hubbard
  */
-class WeightedIntervalRequest extends IntervalRequest implements Weighted {
+class WeightedIntervalRequest extends IntervalRequest {
     private int weight;
 
     /**
@@ -37,7 +37,11 @@ class WeightedIntervalRequest extends IntervalRequest implements Weighted {
         this.weight = weight;
     }
 
-    @Override
+    /**
+     * Getter for weight.
+     *
+     * @return weight of this request.
+     */
     public int getWeight() {
         return weight;
     }
