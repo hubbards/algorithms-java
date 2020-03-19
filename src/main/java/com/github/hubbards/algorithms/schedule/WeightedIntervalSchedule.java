@@ -1,8 +1,5 @@
 package com.github.hubbards.algorithms.schedule;
 
-import com.google.common.collect.Iterators;
-import com.google.common.collect.PeekingIterator;
-
 import java.util.*;
 
 import static com.google.common.base.Preconditions.checkArgument;
