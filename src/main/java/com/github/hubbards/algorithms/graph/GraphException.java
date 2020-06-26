@@ -7,7 +7,6 @@ package com.github.hubbards.algorithms.graph;
  *
  * @author Spencer Hubbard
  */
-@SuppressWarnings("serial")
 public class GraphException extends RuntimeException {
     /**
      * Construct graph exception object.
