@@ -267,16 +267,7 @@ public class KruskalGraph extends WeightedGraph {
 
         // Compare cost of this edge with cost of given edge.
         public int compareTo(Edge other) {
-            if (cost < other.cost) {
-                // cost of this edge is less than other
-                return -1;
-            } else if (cost > other.cost) {
-                // cost of this edge is greater than other
-                return 1;
-            } else {
-                // cost of this edge is equal to other
-                return 0;
-            }
+            return Double.compare(cost, other.cost);
         }
     }
 }
