@@ -9,8 +9,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @author Spencer Hubbard
  */
 public class WeightedRequest {
-    private String name;
-    private int weight;
+    private final String name;
+    private final int weight;
 
     /**
      * Constructs a new weighted request with a name and weight.

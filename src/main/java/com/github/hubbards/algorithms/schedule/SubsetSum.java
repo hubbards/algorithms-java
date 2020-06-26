@@ -75,7 +75,7 @@ public class SubsetSum {
      * Builder is a builder for an instance of the subset sum problem.
      */
     public static class Builder {
-        public static int DEFAULT_WEIGHT_LIMIT = 0;
+        public static final int DEFAULT_WEIGHT_LIMIT = 0;
 
         private int weightLimit;
         private Set<WeightedRequest> requests;

@@ -15,9 +15,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @author Spencer Hubbard
  */
 class IntervalRequest {
-    private String name;
-    private Instant start;
-    private Instant finish;
+    private final String name;
+    private final Instant start;
+    private final Instant finish;
 
     /**
      * Constructs a new (unweighted) interval request with a name, start time,

@@ -14,7 +14,7 @@ import static com.google.common.base.Preconditions.checkArgument;
  * @author Spencer Hubbard
  */
 class WeightedIntervalRequest extends IntervalRequest {
-    private int weight;
+    private final int weight;
 
     /**
      * Constructs a new weighted interval request with a name, start time,
